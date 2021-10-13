@@ -1,5 +1,13 @@
 <head>
-  <script src="HB_region_lock_info_formatter.js"></script>
+  <script src="HB_region_lock_info_formatter.js" async></script>
+  <!-- using darkmode.js -->
+  <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+  <script>
+    function addDarkmodeWidget() {
+      new Darkmode().showWidget();
+    }
+    window.addEventListener('load', addDarkmodeWidget);
+  </script>
 </head>
 <body onload="detectBrowser()" style="background-color: #F8F8F8;">
   <div align="center">
