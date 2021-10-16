@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Humble Bundle 鎖區資訊格式器</title>
+  <script src="HB_region_lock_info_formatter.js" async></script>
+</head>
+<body onload="detectBrowser()" style="background-color: #F8F8F8;">
+  <div align="center">
+    <h1>Humble Bundle 鎖區資訊格式器</h1>
+    <hr style="border: 0; border-top: 1px solid #d0d0d5; width: 70%">
+    <p>
+      <input type="radio" id="browserSafari" name="browserCheck">
+      <label for="browserSafari">Safari</label>
+      <!-- TODO
+      <input type="radio" id="browserFirefox" name="browserCheck">
+      <label for="browserFirefox">Firefox</label>
+      <input type="radio" id="browserChrome" name="browserCheck">
+      <label for="browserChrome">Chrome</label>-->
+    </p>
+    <p>
+      <input id="regionLockInput" placeholder="請貼上鎖區訊息" size="40">
+    </p>
+    <p>
+      <button onclick="run()">執行</button>
+    </p>
+    <p>
+      <input id="result" placeholder="輸出結果" size="40" readonly><br>
+      <p id="lastExecuteTime" style="color:#AAAAAA"></p>
+    </p>
+  </div>
+</body>
+</html>
