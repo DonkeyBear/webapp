@@ -13,21 +13,21 @@
       <button id="buttonTranspose" onclick="transpose()" style="width: 45.5%">移調</button>
       <p>
         文字大小
-        <button id="buttonFontSizeDecrease" onclick="fontSizeDecrease()" style="width: 22px">-</button>
+        <button id="buttonFontSizeDecrease" onclick="changeFontSize(-1)" style="width: 22px">-</button>
         <span id="fontSize">14</span>
-        <button id="buttonFontSizeIncrease" onclick="fontSizeIncrease()" style="width: 22px">+</button>
+        <button id="buttonFontSizeIncrease" onclick="changeFontSize(1)" style="width: 22px">+</button>
       </p>
       <p>
-        文字行句
-        <button id="buttonLineHeightDecrease" onclick="lineHeightDecrease()" style="width: 22px">-</button>
+        文字行距
+        <button id="buttonLineHeightDecrease" onclick="changeLineHeight(-1)" style="width: 22px">-</button>
         <span id="lineHeight">11</span>
-        <button id="buttonLineHeightIncrease" onclick="lineHeightIncrease()" style="width: 22px">+</button>
+        <button id="buttonLineHeightIncrease" onclick="changeLineHeight(1)" style="width: 22px">+</button>
       </p>
       <p>
         文字邊距
-        <button id="buttonPaddingDecrease" onclick="paddingDecrease()" style="width: 22px">-</button>
+        <button id="buttonPaddingDecrease" onclick="changePaddingLeft(-1)" style="width: 22px">-</button>
         <span id="padding">25</span>%
-        <button id="buttonPaddingIncrease" onclick="paddingIncrease()" style="width: 22px">+</button>
+        <button id="buttonPaddingIncrease" onclick="changePaddingLeft(1)" style="width: 22px">+</button>
       </p>
     </nav>
     <div>

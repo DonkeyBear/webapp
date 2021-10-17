@@ -75,9 +75,9 @@ function transpose() {
   document.getElementById("output").innerHTML = chordSheet;
 }
 
-function fontSizeDecrease() {
+function changeFontSize(value) {
   var fontSize = document.getElementById("fontSize").innerHTML;
-  fontSize = Number(fontSize) - 1;
+  fontSize = Number(fontSize) + value;
   if (fontSize == 0) {
     return;
   }
@@ -86,50 +86,23 @@ function fontSizeDecrease() {
     "font-size: " + fontSize + "px;";
 }
 
-function fontSizeIncrease() {
-  var fontSize = document.getElementById("fontSize").innerHTML;
-  fontSize = Number(fontSize) + 1;
-  document.getElementById("fontSize").innerHTML = fontSize;
-  document.getElementById("output").style.cssText +=
-    "font-size: " + fontSize + "px;";
-}
-
-function lineHeightDecrease() {
+function changeLineHeight(value) {
   var lineHeight = document.getElementById("lineHeight").innerHTML;
-  if (lineHeight == 0) {
+  lineHeight = Number(lineHeight) + value;
+  if (lineHeight < 0) {
     return;
   }
-  lineHeight = Number(lineHeight) - 1;
   document.getElementById("lineHeight").innerHTML = lineHeight;
   document.getElementById("output").style.cssText +=
     "line-height: " + lineHeight + "px;";
 }
 
-function lineHeightIncrease() {
-  var lineHeight = document.getElementById("lineHeight").innerHTML;
-  lineHeight = Number(lineHeight) + 1;
-  document.getElementById("lineHeight").innerHTML = lineHeight;
-  document.getElementById("output").style.cssText +=
-    "line-height: " + lineHeight + "px;";
-}
-
-function paddingDecrease() {
+function changePaddingLeft(value) {
   var padding = document.getElementById("padding").innerHTML;
-  if (padding < 0) {
+  if (padding < 0 || padding > 100) {
     return;
   }
-  padding = Number(padding) - 1;
-  document.getElementById("padding").innerHTML = padding;
-  document.getElementById("output").style.cssText +=
-    "padding-left: " + padding + "%;";
-}
-
-function paddingIncrease() {
-  var padding = document.getElementById("padding").innerHTML;
-  if (padding > 100) {
-    return;
-  }
-  padding = Number(padding) + 1;
+  padding = Number(padding) + value;
   document.getElementById("padding").innerHTML = padding;
   document.getElementById("output").style.cssText +=
     "padding-left: " + padding + "%;";
