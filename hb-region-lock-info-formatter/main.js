@@ -32,7 +32,7 @@ function run() {
 
   var today = new Date();
   var currentTime =
-  today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   document.getElementById("lastExecuteTime").innerHTML = "最後執行時間 " + currentTime;
 }
 
@@ -45,4 +45,4 @@ function detectBrowser() {
   } else if (navigator.userAgent.indexOf("Firefox") != -1) {
     document.getElementById("browserFirefox").checked = true;
   }
-}  
+}
