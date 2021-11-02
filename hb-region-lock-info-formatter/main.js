@@ -11,7 +11,7 @@ function run() {
 
   if (document.getElementById("browserSafari").checked) {
     // if using Safari
-    var regionLockInput = regionLockInput.trim().replace(/ /g, ", ");
+    var regionLockInput = regionLockInput.trim().replaceAll(" ", ", ");
   } else if (document.getElementById("browserFirefox").checked) {
     // if using Firefox
     null; // TODO
