@@ -16,29 +16,37 @@ function transpose() {
     "F##": "G", "G##": "A",
     "A##": "B"
   };
-  
+
   var chordSheet = document.getElementById("chordSheet").value;
-  var capo = Number(document.getElementById("capo").value);
-  
+  var transposeType = document.getElementById("select-transpose-type").value;
+  var transposeValue = Number(document.getElementById("transpose-value").value);
+
+  // symbol correction
+  chordSheet = chordSheet.replaceAll("♯", "#");
+  chordSheet = chordSheet.replaceAll("♭", "b");
+
   // input valid
-  if ((capo >= -11 && capo <= 11) == false) {
+  if ((transposeValue >= -11 && transposeValue <= 11) == false) {
     alert("請輸入 -11 到 11 之間的值！");
     return;
   }
-  
-  var i; // for loop
-  
-  for (i = 0; i < 12; i++) {
+
+  // transpose value correction
+  if (transposeType == "capo") {
+    transposeValue = 0 - transposeValue;
+  }
+
+  for (let i = 0; i < 12; i++) {
     // first transpose to Roman number
     chordSheet = chordSheet.replaceAll(
-      Object.keys(keys)[i],                
+      Object.keys(keys)[i],
       Object.values(keys)[i]
     );
   }
-  
-  for (i = 0; i < 12; i++) {
+
+  for (let i = 0; i < 12; i++) {
     // transpose offset
-    var f = i + capo;
+    let f = i + transposeValue;
     if (f >= 12) {
       f -= 12;
     } else if (f < 0) {
@@ -46,37 +54,43 @@ function transpose() {
     }
     // second transpose to pitch names
     chordSheet = chordSheet.replaceAll(
-      Object.values(keys)[i],     
+      Object.values(keys)[i],
       Object.keys(keys)[f]
     );
   }
-  
-  for (i = 0; i < 11; i++) {
+
+  for (let i = 0; i < 11; i++) {
     //fix illegal pitch names
     chordSheet = chordSheet.replaceAll(
-      Object.keys(pitchNameFix)[i], 
+      Object.keys(pitchNameFix)[i],
       Object.values(pitchNameFix)[i]
     );
   }
-  
+
   // fix layout of the chord sheet
   chordSheet = chordSheet.replaceAll("\n", "<br>");
   chordSheet = chordSheet.replaceAll(" ", "&nbsp;");
-  
+
   // color the chords
   // (This regex is stole from Alex Golovin in Stack Overflow,
   // and make some small changes by me.)
   // ref: https://stackoverflow.com/questions/29144822/
   chordSheet = chordSheet.replaceAll(
-    /([A-G](#|b)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)-?\d*(\/([A-G](#|b)?))?/g,
+    /([A-G](#|b)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)(\+|-)?\d*\(?(M|maj|major)?\d*\)?(\/([A-G](#|b)?))?/g,
     "<span class=\"chordBlue\">$&</span>"
   );
-  
+
   document.getElementById("output").innerHTML = chordSheet;
 }
 
+function clearSheetTextArea() {
+  document.getElementById("chordSheet").value = "";
+  document.getElementById("transpose-value").value = "";
+  document.getElementById("chordSheet").focus();
+}
+
 function changeFontSize(value) {
-  var fontSize = document.getElementById("fontSize").innerHTML;
+  let fontSize = document.getElementById("fontSize").innerHTML;
   fontSize = Number(fontSize) + value;
   if (fontSize == 0) {
     return;
@@ -87,7 +101,7 @@ function changeFontSize(value) {
 }
 
 function changeLineHeight(value) {
-  var lineHeight = document.getElementById("lineHeight").innerHTML;
+  let lineHeight = document.getElementById("lineHeight").innerHTML;
   lineHeight = Number(lineHeight) + value;
   if (lineHeight < 0) {
     return;
@@ -98,7 +112,7 @@ function changeLineHeight(value) {
 }
 
 function changePaddingLeft(value) {
-  var padding = document.getElementById("padding").innerHTML;
+  let padding = document.getElementById("padding").innerHTML;
   if (padding < 0 || padding > 100) {
     return;
   }

@@ -1,39 +1,66 @@
-<!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
-  <title>91譜和弦移調器</title>
-  <link rel="stylesheet" href="view.min.css">
+  <title>和弦譜移調器</title>
+  <link rel="stylesheet" href="index.min.css">
 </head>
+
 <body>
   <div id="sitebody">
     <nav>
-      <textarea id="chordSheet" style="width: 97%"></textarea><br>
-      <input id="capo" placeholder="半音數" style="text-align: center; width: 50%" required>
-      <button id="buttonTranspose" onclick="transpose()" style="width: 45.5%">移調</button>
+      <textarea id="chordSheet" style="width: 97.2%;" autofocus></textarea>
       <p>
-        文字大小
-        <button id="buttonFontSizeDecrease" onclick="changeFontSize(-1)" style="width: 22px">-</button>
-        <span id="fontSize">14</span>
-        <button id="buttonFontSizeIncrease" onclick="changeFontSize(1)" style="width: 22px">+</button>
+      <div class="left-part">
+        <select id="select-transpose-type" style="text-align: center; width: 100%;">
+          <option value="capo" selected>移調夾 (CAPO)</option>
+          <option value="half-tone">半音</option>
+        </select>
+      </div>
+      <div class="right-part">
+        <input id="transpose-value" type="number" min="-11" max="11" style="text-align: center; width: 94.5%;" required>
+      </div>
+      </p><br>
+      <p>
+      <div class="left-part">
+        <button onclick="clearSheetTextArea()" style="width: 100%;">清空</button>
+      </div>
+      <div class="right-part">
+        <button onclick="transpose()" style="width: 100%;">移調</button>
+      </div>
       </p>
+      <br><br>
+      <hr>
       <p>
-        文字行距
-        <button id="buttonLineHeightDecrease" onclick="changeLineHeight(-1)" style="width: 22px">-</button>
-        <span id="lineHeight">11</span>
-        <button id="buttonLineHeightIncrease" onclick="changeLineHeight(1)" style="width: 22px">+</button>
-      </p>
+      <div class="left-part">文字大小</div>
+      <div class="right-part">
+        <button id="buttonFontSizeDecrease" onclick="changeFontSize(-1)" style="width: 20%; float: left;">-</button>
+        <span style="text-align: center; width: 60%; float: left;"><span id="fontSize">14</span>px</span>
+        <button id="buttonFontSizeIncrease" onclick="changeFontSize(1)" style="width: 20%; float: right;">+</button>
+      </div>
+      </p><br>
       <p>
-        文字邊距
-        <button id="buttonPaddingDecrease" onclick="changePaddingLeft(-1)" style="width: 22px">-</button>
-        <span id="padding">25</span>%
-        <button id="buttonPaddingIncrease" onclick="changePaddingLeft(1)" style="width: 22px">+</button>
+      <div class="left-part">文字行距</div>
+      <div class="right-part">
+        <button id="buttonLineHeightDecrease" onclick="changeLineHeight(-1)" style="width: 20%; float: left;">-</button>
+        <span style="text-align: center; width: 60%; float: left;"><span id="lineHeight">11</span>px</span>
+        <button id="buttonLineHeightIncrease" onclick="changeLineHeight(1)" style="width: 20%; float: right;">+</button>
+      </div>
+      </p><br>
+      <p>
+      <div class="left-part">文字邊距</div>
+      <div class="right-part">
+        <button id="buttonPaddingDecrease" onclick="changePaddingLeft(-1)" style="width: 20%; float: left;">-</button>
+        <span style="text-align: center; width: 60%; float: left;"><span id="padding">25</span>%</span>
+        <button id="buttonPaddingIncrease" onclick="changePaddingLeft(1)" style="width: 20%; float: right;">+</button>
+      </div>
       </p>
     </nav>
     <div>
       <p id="output"></p>
     </div>
   </div>
-  <script src="core.min.js"></script>
+  <script src="main.min.js"></script>
 </body>
+
 </html>
