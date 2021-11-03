@@ -57,7 +57,7 @@ function transpose() {
     // color the chords
     // ref for this regex: https://stackoverflow.com/questions/29144822/
     targetString = targetString.replaceAll(
-      /([A-G](#|b)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)(\+|-)?\d*\(?(M|maj|major)?\d*\)?(\/(([A-G]|\d*)(#|b)?))?/g,
+      /([A-G](#|b)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)(\+|-)?\d*\(?(sus\d*)?(M|maj|major)?\d*\)?(\/(([A-G]|\d*)(#|b)?))?/g,
       "<span class=\"is-chord\">$&</span>"
     );
 
