@@ -110,7 +110,16 @@ function transpose() {
     document.getElementById("output").style.cssText += "font-family: Arial, Helvetica, sans-serif;";
   }
 
+  // print chordsheet
   document.getElementById("output").innerHTML = chordSheet;
+
+  // edit "is-chord" class after print
+  if (document.getElementById("check-background-color").checked) {
+    let classContent = document.getElementsByClassName("is-chord");
+    for (let i = 0; i < classContent.length; i++) {
+      classContent[i].style.cssText += "background-color: #EEEEEE;";
+    }
+  }
 }
 
 function clearSheetTextArea() {
