@@ -37,6 +37,27 @@
         <input type="checkbox" id="check-background-color">
         <label for="check-background-color">將和弦加上底色</label>
         <u><a title="將和弦記號加上底色。">(?)</a></u>
+        <br>
+        <input type="checkbox" id="check-color-picking" onclick="switchMenu('color-picking-menu')">
+        <label for="check-color-picking">自訂配色</label>
+      <div id="color-picking-menu" hidden>
+        <div class="color-picker">
+          <input type="color" value="#FFFFFF" id="input-color-bg">
+          <label for="input-color-bg">背景顏色</label>
+        </div>
+        <div class="color-picker">
+          <input type="color" value="#666666" id="input-color-text">
+          <label for="input-color-text">文字顏色</label>
+        </div>
+        <div class="color-picker">
+          <input type="color" value="#246FB5" id="input-color-chord">
+          <label for="input-color-chord">和弦顏色</label>
+        </div>
+        <div class="color-picker">
+          <input type="color" value="#EEEEEE" id="input-color-chordbg">
+          <label for="input-color-chordbg">和弦底色</label>
+        </div>
+      </div>
       </p>
       <p>
       <div class="left-part">
@@ -77,7 +98,7 @@
       <p id="output"></p>
     </div>
   </div>
-  <script src="main.js"></script>
+  <script src="main.min.js"></script>
 </body>
 
 </html>

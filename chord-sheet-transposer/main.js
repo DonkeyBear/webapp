@@ -68,6 +68,16 @@ function transpose() {
   var transposeType = document.getElementById("select-transpose-type").value;
   var transposeValue = Number(document.getElementById("transpose-value").value);
 
+  if (document.getElementById("check-color-picking").checked) {
+    var colorPalette = {};
+    colorPalette["bg"] = document.getElementById("input-color-bg").value;
+    colorPalette["text"] = document.getElementById("input-color-text").value;
+    colorPalette["chord"] = document.getElementById("input-color-chord").value;
+    colorPalette["chordbg"] = document.getElementById("input-color-chordbg").value;
+  } else {
+    var colorPalette = { bg: "#FFFFFF", text: "#666666", chord: "#246FB5", chordbg: "#EEEEEE" };
+  }
+
   // symbol correction
   chordSheet = chordSheet.replaceAll("♯", "#");
   chordSheet = chordSheet.replaceAll("♭", "b");
@@ -113,12 +123,27 @@ function transpose() {
   // print chordsheet
   document.getElementById("output").innerHTML = chordSheet;
 
+  // change colors
+  document.querySelector("body").style.backgroundColor = colorPalette["bg"];
+  document.getElementById("output").style.cssText += "color:" + colorPalette["text"];
+  var inChordContent = document.getElementsByClassName("is-chord");
+  for (let i = 0; i < inChordContent.length; i++) {
+    inChordContent[i].style.cssText += "color:" + colorPalette["chord"];
+  }
+
   // edit "is-chord" class after print
   if (document.getElementById("check-background-color").checked) {
-    let classContent = document.getElementsByClassName("is-chord");
-    for (let i = 0; i < classContent.length; i++) {
-      classContent[i].style.cssText += "background-color: #EEEEEE;";
+    for (let i = 0; i < inChordContent.length; i++) {
+      inChordContent[i].style.cssText += "background-color:" + colorPalette["chordbg"];
     }
+  }
+}
+
+function switchMenu(value) {
+  if (document.getElementById(value).hidden) {
+    document.getElementById(value).hidden = false;
+  } else {
+    document.getElementById(value).hidden = true;
   }
 }
 
