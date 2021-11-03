@@ -104,6 +104,12 @@ function transpose() {
     chordSheet = chordSheet.replaceAll("bFLAT-SYMBOL", "<span class=\"music-symbol\">♭</span>");
   }
 
+  if (document.getElementById("check-monospace").checked) {
+    document.getElementById("output").style.cssText += "font-family: monospace, Arial, Helvetica, sans-serif;";
+  } else {
+    document.getElementById("output").style.cssText += "font-family: Arial, Helvetica, sans-serif;";
+  }
+
   document.getElementById("output").innerHTML = chordSheet;
 }
 
