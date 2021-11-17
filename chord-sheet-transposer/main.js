@@ -154,34 +154,37 @@ function clearSheetTextArea() {
 }
 
 function changeFontSize(value) {
-  let fontSize = document.getElementById("fontSize").innerHTML;
+  let fontSize = document.getElementById("input-fontSize").innerHTML;
+  fontSize = fontSize.slice(0, -3);
   fontSize = Number(fontSize) + value;
   if (fontSize == 0) {
     return;
   }
-  document.getElementById("fontSize").innerHTML = fontSize;
+  document.getElementById("input-fontSize").innerHTML = fontSize + " px";
   document.getElementById("output").style.cssText +=
     "font-size: " + fontSize + "px;";
 }
 
 function changeLineHeight(value) {
-  let lineHeight = document.getElementById("lineHeight").innerHTML;
+  let lineHeight = document.getElementById("input-lineHeight").innerHTML;
+  lineHeight = lineHeight.slice(0, -3);
   lineHeight = Number(lineHeight) + value;
   if (lineHeight < 0) {
     return;
   }
-  document.getElementById("lineHeight").innerHTML = lineHeight;
+  document.getElementById("input-lineHeight").innerHTML = lineHeight + " px";
   document.getElementById("output").style.cssText +=
     "line-height: " + lineHeight + "px;";
 }
 
 function changePaddingLeft(value) {
-  let padding = document.getElementById("padding").innerHTML;
+  let padding = document.getElementById("input-padding").innerHTML;
+  padding = padding.slice(0, -1);
+  padding = Number(padding) + value;
   if (padding < 0 || padding > 100) {
     return;
   }
-  padding = Number(padding) + value;
-  document.getElementById("padding").innerHTML = padding;
+  document.getElementById("input-padding").innerHTML = padding + "%";
   document.getElementById("output").style.cssText +=
     "padding-left: " + padding + "%;";
 }

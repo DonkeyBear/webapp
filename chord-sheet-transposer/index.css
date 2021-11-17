@@ -36,10 +36,6 @@ nav .right-part {
 .color-picker {
   margin: 0.3em 0 0.3em;
 }
-hr {
-  border: 0;
-  border-top: 1px solid;
-}
 textarea {
   font-size: 12px;
   font-family: Arial, Helvetica, sans-serif;
