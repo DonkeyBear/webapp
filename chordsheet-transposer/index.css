@@ -40,8 +40,8 @@ textarea.form-control {
   padding: 0.25rem;
 }
 .offcanvas-header, .modal-header {
-  padding-top: 1.2rem;
-  padding-right: 1.7rem;
+  padding-top: 1.2rem 1.7rem;
+  border-bottom: 1px solid #DEE2E6;;
 }
 .input-group-custom button {
   border-color: #CED4DA;

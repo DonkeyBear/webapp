@@ -16,6 +16,9 @@ const pitchNameFix = {
   "A##": "B"
 };
 
+var chordSheetLength = 0;
+var chordSheetLengthLast = 0;
+
 function transpose() {
 
   function transposeThis(targetString) {
@@ -177,10 +180,17 @@ function changeLineHeight(value) {
 
 function cleanUpBreakLine(textareaId) {
   let textareaContent = document.getElementById(textareaId);
-  let getCountOfBreakLine = (textareaContent.value.match(/\n/g) || []).length;
-  let getCountOfTwoBreakLine = (textareaContent.value.match(/\n\n/g) || []).length;
-  if (getCountOfTwoBreakLine * 2 == getCountOfBreakLine) {
-    textareaContent.value = textareaContent.value.replaceAll("\n\n", "\n");
+
+  chordSheetLengthLast = chordSheetLength;
+  chordSheetLength = textareaContent.value.length;
+
+  if ((chordSheetLength - chordSheetLengthLast) > 1) {
+    let getCountOfBreakLine = (textareaContent.value.match(/\n/g) || []).length;
+    let getCountOfTwoBreakLine = (textareaContent.value.match(/\n\n/g) || []).length;
+
+    if (getCountOfTwoBreakLine * 2 == getCountOfBreakLine) {
+      textareaContent.value = textareaContent.value.replaceAll("\n\n", "\n");
+    }
   }
 }
 
