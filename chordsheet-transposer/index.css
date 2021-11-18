@@ -2,18 +2,20 @@ nav {
   font-family: Arial, Helvetica, sans-serif;
 }
 nav textarea#chordSheet {
-  height: 10rem;
+  height: 7.5rem;
+}
+nav p, a, label, h1, h2, h3, h4, h5, h6 {
+  user-select: none; 
+}
+textarea.form-control {
+  resize: none;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.5rem;
-  line-height: 0.75;
+  font-size: 14px;
+  line-height: 22px;
+  color: #666666;
 }
-nav .left-part {
-  float: left;
-  width: 50%;
-}
-nav .right-part {
-  float: right;
-  width: 50%;
+#version-badge {
+  font-size: 0.7rem;
 }
 #output-container {
   display: flex;
@@ -24,7 +26,7 @@ nav .right-part {
 #output {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 11px;
+  line-height: 22px;
   overflow: hidden;
 }
 #color-picking-menu {
@@ -40,12 +42,23 @@ nav .right-part {
 .navbar-toggler {
   padding: 0.25rem;
 }
-.offcanvas-header {
+.offcanvas-header, .modal-header {
   padding-top: 1.2rem;
   padding-right: 1.7rem;
 }
+.input-group-custom button {
+  border-color: #CED4DA;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top: 0;
+}
+.input-group-custom textarea {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+} 
 @media (max-width: 575.98px) {
   #offcanvasNavbar {
     width: 100%;
+    border-left: 0;
   }
 }

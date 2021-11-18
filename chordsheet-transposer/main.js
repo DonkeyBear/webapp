@@ -82,13 +82,11 @@ function transpose() {
   chordSheet = chordSheet.replaceAll("♯", "#");
   chordSheet = chordSheet.replaceAll("♭", "b");
 
-  // input valid
-  if ((transposeValue >= -11 && transposeValue <= 11) == false) {
-    alert("請輸入 -11 到 11 之間的值！");
-    return;
-  }
-
   // transpose value correction
+  if ((transposeValue >= -11 && transposeValue <= 11) == false) {
+    transposeValue = transposeValue % 12;
+  }
+  
   if (transposeType == "capo") {
     transposeValue = 0 - transposeValue;
   }
@@ -175,4 +173,17 @@ function changeLineHeight(value) {
   document.getElementById("input-lineHeight").innerHTML = lineHeight + "px";
   document.getElementById("output").style.cssText +=
     "line-height: " + lineHeight + "px;";
+}
+
+function cleanUpBreakLine(textareaId) {
+  let textareaContent = document.getElementById(textareaId);
+  let getCountOfBreakLine = (textareaContent.value.match(/\n/g) || []).length;
+  let getCountOfTwoBreakLine = (textareaContent.value.match(/\n\n/g) || []).length;
+  if (getCountOfTwoBreakLine * 2 == getCountOfBreakLine) {
+    textareaContent.value = textareaContent.value.replaceAll("\n\n", "\n");
+  }
+}
+
+function copyValue(id_1, id_2) {
+  document.getElementById(id_2).value = document.getElementById(id_1).value;
 }
