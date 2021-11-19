@@ -1,3 +1,7 @@
+// ==========
+// global varius section
+// ==========
+
 const keys = {
   "C": "[I]"  , "C#": "[I#]" ,
   "D": "[II]" , "D#": "[II#]",
@@ -18,6 +22,10 @@ const pitchNameFix = {
 
 var chordSheetLength = 0;
 var chordSheetLengthLast = 0;
+
+// ==========
+// function section
+// ==========
 
 function transpose() {
 
@@ -58,7 +66,7 @@ function transpose() {
     targetString = targetString.replaceAll(" ", "&nbsp;");
 
     // color the chords
-    // ref for this regex: https://stackoverflow.com/questions/29144822/
+    // inspired by this regex: https://stackoverflow.com/questions/29144822/
     targetString = targetString.replaceAll(
       /([A-G](#|b)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)(\+|-)?\d*\(?(sus\d*)?(M|maj|major)?\d*\)?(\/(([A-G]|\d*)(#|b)?))?/g,
       "<span class=\"is-chord\">$&</span>"
@@ -86,7 +94,7 @@ function transpose() {
   chordSheet = chordSheet.replaceAll("♭", "b");
 
   // transpose value correction
-  if ((transposeValue >= -11 && transposeValue <= 11) == false) {
+  if (transposeValue < -11 || transposeValue > 11) {
     transposeValue = transposeValue % 12;
   }
   
@@ -97,6 +105,7 @@ function transpose() {
   if (document.getElementById("check-91pu-optimize").checked) {
     chordSheetArray = chordSheet.split("\n");
     for (let i = 0; i < chordSheetArray.length; i++) {
+      // if "|" is in the line, it's a chord line.
       if (chordSheetArray[i].indexOf("|") != -1) {
         chordSheetArray[i] = transposeThis(chordSheetArray[i]);
       } else {
@@ -104,13 +113,18 @@ function transpose() {
       }
     }
     chordSheet = chordSheetArray.join("<br>");
+    // make sharp and flat symbol be <sup> style.
+    chordSheet = chordSheet.replaceAll(/[A-G](#|b)/g, "$&MAKE-THIS-SUP");
+    chordSheet = chordSheet.replaceAll("#MAKE-THIS-SUP", "<sup>#</sup>");
+    chordSheet = chordSheet.replaceAll("bMAKE-THIS-SUP", "<sup>b</sup>");
+
   } else {
     chordSheet = transposeThis(chordSheet);
   }
 
   if (document.getElementById("check-replace-sharp-flat").checked) {
-    chordSheet = chordSheet.replaceAll(/[A-G]#/g, "$&SHARP-SYMBOL");
-    chordSheet = chordSheet.replaceAll(/[A-G]b/g, "$&FLAT-SYMBOL");
+    chordSheet = chordSheet.replaceAll(/([A-G]|(<sup>))#/g, "$&SHARP-SYMBOL");
+    chordSheet = chordSheet.replaceAll(/([A-G]|(<sup>))b/g, "$&FLAT-SYMBOL");
     chordSheet = chordSheet.replaceAll("#SHARP-SYMBOL", "<span class=\"music-symbol\">♯</span>");
     chordSheet = chordSheet.replaceAll("bFLAT-SYMBOL", "<span class=\"music-symbol\">♭</span>");
   }
