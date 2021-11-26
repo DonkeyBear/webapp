@@ -76,7 +76,6 @@ function transpose() {
       /([A-G](#|b)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)(\+|-)?\d*\(?(sus\d*)?(M|maj|major)?\d*\)?(\/(([A-G]|\d*)(#|b)?))?/g,
       "<span class=\"is-chord\">$&</span>"
     );
-
     return targetString;
   }
 
