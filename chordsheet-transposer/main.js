@@ -24,6 +24,13 @@ var chordSheetLength = 0;
 var chordSheetLengthLast = 0;
 
 // ==========
+// execute once at start.
+// ==========
+document.getElementById("input-fontSize").value = "14px";
+document.getElementById("input-lineHeight").value = "22px";
+transpose();
+
+// ==========
 // function section
 // ==========
 
@@ -31,7 +38,7 @@ function transpose() {
 
   function transposeThis(targetString) {
     for (let i = 0; i < 12; i++) {
-      // first transpose to Roman number
+      // first, transpose to Roman number.
       targetString = targetString.replaceAll(
         Object.keys(keys)[i],
         Object.values(keys)[i]
@@ -40,13 +47,11 @@ function transpose() {
 
     for (let i = 0; i < 12; i++) {
       // transpose offset
-      let f = i + transposeValue;
-      if (f >= 12) {
-        f -= 12;
-      } else if (f < 0) {
+      let f = (i + transposeValue) % 12;
+      if (f < 0) {
         f += 12;
       }
-      // second transpose to pitch names
+      // second, transpose to pitch names.
       targetString = targetString.replaceAll(
         Object.values(keys)[i],
         Object.keys(keys)[f]
@@ -54,14 +59,14 @@ function transpose() {
     }
 
     for (let i = 0; i < 11; i++) {
-      //fix illegal pitch names
+      // fix illegal pitch names.
       targetString = targetString.replaceAll(
         Object.keys(pitchNameFix)[i],
         Object.values(pitchNameFix)[i]
       );
     }
 
-    // fix layout of the chord sheet
+    // fix layout of the chord sheet.
     targetString = targetString.replaceAll("\n", "<br>");
     targetString = targetString.replaceAll(" ", "&nbsp;");
 
@@ -94,9 +99,8 @@ function transpose() {
   chordSheet = chordSheet.replaceAll("♭", "b");
 
   // transpose value correction
-  if (transposeValue < -11 || transposeValue > 11) {
-    transposeValue = transposeValue % 12;
-  }
+  transposeValue = transposeValue % 12;
+  document.getElementById("transpose-value").value = transposeValue;
   
   if (transposeType == "capo") {
     transposeValue = 0 - transposeValue;
@@ -164,30 +168,33 @@ function switchMenu(value) {
 
 function clearSheetTextArea() {
   document.getElementById("chordSheet").value = "";
-  document.getElementById("transpose-value").value = "0";
   document.getElementById("chordSheet").focus();
 }
 
 function changeFontSize(value) {
-  let fontSize = document.getElementById("input-fontSize").innerHTML;
-  fontSize = fontSize.slice(0, -2);
-  fontSize = Number(fontSize) + value;
+  let fontSize = document.getElementById("input-fontSize").value;
+  fontSize = fontSize.replaceAll(/\D/g, "").trim();
+  if (value != 0) {
+    fontSize = Number(fontSize) + value;
+  }
   if (fontSize == 0) {
     return;
   }
-  document.getElementById("input-fontSize").innerHTML = fontSize + "px";
+  document.getElementById("input-fontSize").value = fontSize + "px";
   document.getElementById("output").style.cssText +=
     "font-size: " + fontSize + "px;";
 }
 
 function changeLineHeight(value) {
-  let lineHeight = document.getElementById("input-lineHeight").innerHTML;
-  lineHeight = lineHeight.slice(0, -2);
-  lineHeight = Number(lineHeight) + value;
+  let lineHeight = document.getElementById("input-lineHeight").value;
+  lineHeight = lineHeight.replaceAll(/\D/g, "").trim();
+  if (value != 0) {
+    lineHeight = Number(lineHeight) + value;
+  }
   if (lineHeight < 0) {
     return;
   }
-  document.getElementById("input-lineHeight").innerHTML = lineHeight + "px";
+  document.getElementById("input-lineHeight").value = lineHeight + "px";
   document.getElementById("output").style.cssText +=
     "line-height: " + lineHeight + "px;";
 }

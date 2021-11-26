@@ -44,6 +44,9 @@ textarea.form-control {
   padding: 1.2rem 1.7rem;
   border-bottom: 1px solid #DEE2E6;
 }
+.btn-one-char {
+  max-width: 2.5rem;
+}
 .input-group-custom button {
   border-color: #CED4DA;
   border-top-right-radius: 0px;
