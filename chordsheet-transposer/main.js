@@ -222,14 +222,14 @@ function copyValue(id_1, id_2) {
 
 function responsiveOutput() {
   let output = document.getElementById("output");
-  let body = document.querySelector("body");
   let inputFontSize = document.getElementById("input-fontSize");
+
+  if (output.innerHTML.trim()) {
+    return;
+  }
 
   function widthOverflow(element) {
     return element.scrollWidth > element.clientWidth;
-  }
-  function heightOverflow(element) {
-    return element.scrollHeight > element.clientHeight;
   }
 
   if (widthOverflow(output)) {
