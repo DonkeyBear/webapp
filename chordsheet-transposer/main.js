@@ -224,7 +224,7 @@ function responsiveOutput() {
   let output = document.getElementById("output");
   let inputFontSize = document.getElementById("input-fontSize");
 
-  if (output.innerHTML.trim()) {
+  if (output.innerHTML.replaceAll(/(&nbsp;)|(&ensp;)|(&emsp;)|(&thinsp;)|(<br>)/g, "") == "") {
     return;
   }
 
