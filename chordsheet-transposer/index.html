@@ -31,7 +31,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="editorModalLabel">和弦譜編輯器</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"
-            onclick="copyValue('chordSheetFull', 'chordSheet')"></button>
+            onclick="copyValue('chordSheetFull', 'chordSheet'); transpose()"></button>
         </div>
         <div class="modal-body">
           <textarea class="form-control w-100 h-100" id="chordSheetFull" placeholder="將和弦譜貼上於此處……" spellcheck="false"
@@ -52,7 +52,7 @@
           <h5 class="offcanvas-title position-relative" id="offcanvasNavbarLabel">
             和弦譜轉調器&nbsp;
             <span class="badge rounded-pill bg-primary position-absolute  top-50 translate-middle-y"
-              id="version-badge">v1.2</span>
+              id="version-badge">v1.3</span>
           </h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
@@ -70,12 +70,13 @@
                 </button>
               </div>
             </div>
-            <div class="input-group mb-2">
-              <select class="form-select form-select-sm text-center" id="select-transpose-type">
+            <div class="input-group input-group-sm mb-2">
+              <select class="form-select text-center w-50" id="select-transpose-type">
                 <option value="half-tone" selected>升降調</option>
                 <option value="capo">移調夾</option>
               </select>
-              <input class="form-control form-control-sm text-center" id="transpose-value" type="number" value="0" onchange="transpose()">
+              <input class="form-control text-center w-50" id="transpose-value" type="number" value="0"
+                onchange="transpose()">
             </div>
             <div>
               <input class="form-check-input" type="checkbox" id="check-replace-sharp-flat" onchange="transpose()">
@@ -117,6 +118,7 @@
               </div>
             </div>
             <hr>
+            <button class="btn btn-sm btn-outline-primary w-100 mb-2 mobile-only" onclick="responsiveOutput()">自動調整</button>
             <div class="row mb-2">
               <div class="col-5 position-relative">
                 <p class="position-absolute top-50 translate-middle-y">文字大小</p>
@@ -124,10 +126,10 @@
               <div class="col-7">
                 <div class="input-group input-group-sm w-100">
                   <button class="btn btn-outline-secondary btn-one-char" type="button"
-                    onclick="changeFontSize(-1)">－</button>
+                    onclick="changeFontSize(-0.5)">－</button>
                   <input class="form-control text-center" id="input-fontSize" onchange="changeFontSize(0)">
                   <button class="btn btn-outline-secondary btn-one-char" type="button"
-                    onclick="changeFontSize(1)">＋</button>
+                    onclick="changeFontSize(0.5)">＋</button>
                 </div>
               </div>
             </div>
@@ -138,10 +140,10 @@
               <div class="col-7">
                 <div class="input-group input-group-sm w-100">
                   <button class="btn btn-outline-secondary btn-one-char" type="button"
-                    onclick="changeLineHeight(-1)">－</button>
+                    onclick="changeLineHeight(-0.05)">－</button>
                   <input class="form-control text-center" id="input-lineHeight" onchange="changeLineHeight(0)">
                   <button class="btn btn-outline-secondary btn-one-char" type="button"
-                    onclick="changeLineHeight(1)">＋</button>
+                    onclick="changeLineHeight(0.05)">＋</button>
                 </div>
               </div>
             </div>

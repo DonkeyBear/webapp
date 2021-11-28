@@ -8,7 +8,7 @@ textarea.form-control {
   resize: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 21px;
   color: #666666;
 }
 #version-badge {
@@ -23,7 +23,7 @@ textarea.form-control {
 #output {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 1.5;
   overflow: hidden;
 }
 #color-picking-menu {
@@ -56,10 +56,15 @@ textarea.form-control {
 .input-group-custom textarea {
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
-} 
+}
 @media (max-width: 575.98px) {
   #offcanvasNavbar {
     width: 100%;
     border-left: 0;
+  }
+}
+@media (min-width: 576px) {
+  .mobile-only {
+    display: none;
   }
 }

@@ -26,8 +26,8 @@ var chordSheetLengthLast = 0;
 // ==========
 // execute once at start.
 // ==========
-document.getElementById("input-fontSize").value = "14px";
-document.getElementById("input-lineHeight").value = "22px";
+document.getElementById("input-fontSize").value = "14.0";
+document.getElementById("input-lineHeight").value = "1.50";
 transpose();
 
 // ==========
@@ -171,31 +171,33 @@ function clearSheetTextArea() {
 }
 
 function changeFontSize(value) {
-  let fontSize = document.getElementById("input-fontSize").value;
-  fontSize = fontSize.replaceAll(/\D/g, "").trim();
+  let inputFontSize = document.getElementById("input-fontSize");
+  fontSize = Number(inputFontSize.value.replaceAll(/[^\d.]/g, ""));
   if (value != 0) {
-    fontSize = Number(fontSize) + value;
+    fontSize = fontSize + value;
   }
   if (fontSize == 0) {
     return;
   }
-  document.getElementById("input-fontSize").value = fontSize + "px";
+  fontSize = fontSize.toFixed(1);
+  inputFontSize.value = fontSize;
   document.getElementById("output").style.cssText +=
     "font-size: " + fontSize + "px;";
 }
 
 function changeLineHeight(value) {
-  let lineHeight = document.getElementById("input-lineHeight").value;
-  lineHeight = lineHeight.replaceAll(/\D/g, "").trim();
+  let inputLineHeight = document.getElementById("input-lineHeight");
+  lineHeight = Number(inputLineHeight.value.replaceAll(/[^\d.]/g, ""));
   if (value != 0) {
-    lineHeight = Number(lineHeight) + value;
+    lineHeight = lineHeight + value;
   }
   if (lineHeight < 0) {
     return;
   }
-  document.getElementById("input-lineHeight").value = lineHeight + "px";
+  lineHeight = lineHeight.toFixed(2);
+  inputLineHeight.value = lineHeight;
   document.getElementById("output").style.cssText +=
-    "line-height: " + lineHeight + "px;";
+    "line-height: " + lineHeight + ";";
 }
 
 function cleanUpBreakLine(textareaId) {
@@ -216,4 +218,29 @@ function cleanUpBreakLine(textareaId) {
 
 function copyValue(id_1, id_2) {
   document.getElementById(id_2).value = document.getElementById(id_1).value;
+}
+
+function responsiveOutput() {
+  let output = document.getElementById("output");
+  let body = document.querySelector("body");
+  let inputFontSize = document.getElementById("input-fontSize");
+
+  function widthOverflow(element) {
+    return element.scrollWidth > element.clientWidth;
+  }
+  function heightOverflow(element) {
+    return element.scrollHeight > element.clientHeight;
+  }
+
+  if (widthOverflow(output)) {
+    while (widthOverflow(output)) {
+        changeFontSize(-1);
+    }
+  } else {
+    while (widthOverflow(output) == false) {
+      changeFontSize(1);
+    }
+    changeFontSize(-1);
+  }
+  inputFontSize = inputFontSize.value;
 }
