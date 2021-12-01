@@ -29,7 +29,7 @@ function generate() {
   getOutputSection.style.cssText +=
     "background-color: " + colorPalette[selectPalette][0] + ";";
   getOutputDetail.style.cssText +=
-    "background-color: " + colorPalette[selectPalette][4] + ";";
+    "color: " + colorPalette[selectPalette][4] + ";";
 
   if (get("input-voicetype-male").checked) {
     getOutputTitle.style.cssText +=
