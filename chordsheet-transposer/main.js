@@ -28,6 +28,7 @@ var chordSheetLengthLast = 0;
 // ==========
 document.getElementById("input-fontSize").value = "14.0";
 document.getElementById("input-lineHeight").value = "1.50";
+forSafari();
 transpose();
 
 // ==========
@@ -154,6 +155,20 @@ function transpose() {
     for (let i = 0; i < inChordContent.length; i++) {
       inChordContent[i].style.cssText += "background-color:" + colorPalette["chordbg"];
     }
+  }
+}
+
+function forSafari() {
+  if (navigator.userAgent.indexOf("Safari") != -1) {
+    let fontSizeDecrease = document.getElementById("font-size-decrease");
+    let fontSizeIncrease = document.getElementById("font-size-increase");
+    let lineHeightDecrease = document.getElementById("line-height-decrease");
+    let lineHeightIncrease = document.getElementById("line-height-increase");
+
+    fontSizeDecrease.setAttribute("onclick", "changeFontSize(-1)");
+    fontSizeIncrease.setAttribute("onclick", "changeFontSize(1)");
+    lineHeightDecrease.setAttribute("onclick", "changeLineHeight(-0.1)");
+    lineHeightIncrease.setAttribute("onclick", "changeLineHeight(0.1)");
   }
 }
 
