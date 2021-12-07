@@ -1,8 +1,8 @@
-var myName;
-var multiLine;
-var multiLineTime;
-var multiLineFrom;
-var multiLineSelf;
+let myName;
+let multiLine;
+let multiLineTime;
+let multiLineFrom;
+let multiLineSelf;
 
 updateMyName();
 
@@ -34,11 +34,11 @@ function run() {
 
         if (msgFrom == myName) {
           newElement.setAttribute("class", "chat-bubble chat-self");
-          newElement.innerHTML = "<div class='time-stamp time-self'>" + msgTime + "</div>" + msgSelf;
+          newElement.innerHTML = "<div class='time-stamp'>" + msgTime + "</div>" + msgSelf;
 
         } else {
           newElement.setAttribute("class", "chat-bubble chat-other");
-          newElement.innerHTML = "<div class='time-stamp time-other'>" + msgTime + "</div>" + msgSelf;
+          newElement.innerHTML = "<div class='time-stamp'>" + msgTime + "</div>" + msgSelf;
         }
         document.getElementById("output-container").appendChild(newElement);
       }
@@ -72,13 +72,8 @@ function run() {
     
     }
   }
-  
 }
 
 function updateMyName() {
   myName = document.getElementById("my-name").value.trim();
-}
-
-function clean() {
-  document.getElementById("output-container").innerHTML = "";
 }

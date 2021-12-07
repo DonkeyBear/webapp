@@ -26,20 +26,24 @@
           <h5 class="offcanvas-title position-relative" id="offcanvasNavbarLabel">
             LINE對話記錄閱讀器
             <span class="badge rounded-pill bg-primary position-absolute top-50 translate-middle-y ms-1"
-              id="version-badge">v0.1</span>
+              id="version-badge">v0.2</span>
           </h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
           <div class="container">
-            <div class="input-group-custom mb-2">
-              <textarea class="form-control form-control-sm mb-2" id="chat-log" placeholder="將和弦譜貼上於此處……"
+            <div class="col-12">
+              <div class="form-floating">
+                <textarea class="form-control mb-2" id="chat-log" placeholder="將對話記錄貼上於此處……"
                 spellcheck="false" wrap="off"></textarea>
-              <input class="form-control mb-2" id="my-name" oninput="updateMyName()">
-              <div class="btn-group w-100">
-                <button class="btn btn-outline-secondary" onclick="clear()">清空</button>
-                <button class="btn btn-outline-primary" onclick="run()">RUN</button>
+                <label for="chat-log">對話記錄</label>
               </div>
+              <div class="form-floating">
+                <input class="form-control mb-2" id="my-name" oninput="updateMyName()">
+                <label for="my-name">發話人暱稱（綠色訊息）</label>
+              </div>
+                <button class="btn btn-outline-primary w-100" onclick="run()" data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasNavbar">執行</button>
             </div>
           </div>
         </div>
@@ -49,7 +53,7 @@
 
   <section id="output-section">
     <div class="container">
-      <div class="row" id="test-a">
+      <div class="row">
         <div class="col-6 offset-3 min-vh-100" id="output-container">
 
         </div>

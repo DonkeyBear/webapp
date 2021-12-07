@@ -1,21 +1,17 @@
 nav {
   font-family: Arial, Helvetica, sans-serif;
 }
+body {
+  background-color: #7294c2;
+}
 #version-badge {
   font-size: 0.7rem;
 }
-#output-container {
-  /* display: flex; */
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: #87a3c9;
+#chat-log {
+  height: 10rem;
 }
-#output {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  overflow: hidden;
+#output-container {
+  background-color: #87a3c9;
 }
 .navbar-toggler {
   background-color: rgba(255, 255, 255, 0.65);
@@ -25,26 +21,15 @@ nav {
   padding: 1.2rem 1.7rem;
   border-bottom: 1px solid #DEE2E6;
 }
-@media (max-width: 575.98px) {
-  #offcanvasNavbar {
-    width: 100%;
-    border-left: 0;
-  }
-}
-@media (min-width: 576px) {
-  .mobile-only {
-    display: none;
-  }
-}
 .chat-bubble {
   font-size: 0.9rem;
   border-radius: 1rem;
   padding: 0.35rem 0.85rem;
   width: fit-content;
-  max-width: 60%;
+  max-width: 70%;
   line-height: 1.35;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
   position: relative;
   word-break: break-all;
 }
@@ -62,15 +47,15 @@ nav {
   position: absolute;
   bottom: -0.3rem;
   font-size: 0.6rem;
-  min-width: 3rem;
+  white-space: nowrap;
   color: #444;
 }
-.time-self {
+.chat-self .time-stamp {
   transform: translate(-110%,-50%);
   left: 0;
   text-align: end;
 }
-.time-other {
+.chat-other .time-stamp {
   transform: translate(110%,-50%);
   right: 0;
   text-align: start;
@@ -88,6 +73,18 @@ nav {
 .date-stamp {
   margin: 1.2rem auto;
 }
-body {
-  background-color: #7294c2;
+@media (max-width: 575.98px) {
+  #offcanvasNavbar {
+    width: 100%;
+    border-left: 0;
+  }
+  #output-container {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (min-width: 576px) {
+  .mobile-only {
+    display: none;
+  }
 }
