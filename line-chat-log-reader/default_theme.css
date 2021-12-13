@@ -1,0 +1,20 @@
+body {
+  background-color: #485469;
+}
+#output-container {
+  background-color: #92aad4;
+  color: #111111;
+}
+.chat-self {
+  background-color: #8de386;
+}
+.chat-other {
+  background-color: #fefefe;
+}
+.time-stamp {
+  color: #485469;
+}
+.neutral-message {
+  background-color: #7c90b4;
+  color: #fefefe;
+}

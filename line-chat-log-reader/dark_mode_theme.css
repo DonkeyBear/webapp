@@ -1,0 +1,21 @@
+body {
+    background-color: #222222;
+  }
+  #output-container {
+    background-color: #1a1a1a;
+  }
+  .chat-self {
+    background-color: #8de386;
+    color: #111111;
+  }
+  .chat-other {
+    background-color: #2a2a2a;
+    color: #fefefe;
+  }
+  .time-stamp {
+    color: #8d8d8d;
+  }
+  .neutral-message {
+    background-color: #161616;
+    color: #fefefe;
+  }

@@ -26,24 +26,39 @@
           <h5 class="offcanvas-title position-relative" id="offcanvasNavbarLabel">
             LINE對話記錄閱讀器
             <span class="badge rounded-pill bg-primary position-absolute top-50 translate-middle-y ms-1"
-              id="version-badge">v0.2</span>
+              id="version-badge">v0.3</span>
           </h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
           <div class="container">
             <div class="col-12">
-              <div class="form-floating">
-                <textarea class="form-control mb-2" id="chat-log" placeholder="將對話記錄貼上於此處……"
-                spellcheck="false" wrap="off"></textarea>
-                <label for="chat-log">對話記錄</label>
+              <div class="form-group-v mb-2">
+                <div class="form-floating">
+                  <textarea class="form-control" id="chat-log" placeholder="將對話記錄貼上於此處" spellcheck="false" wrap="off"
+                    oninput="lineCount()"></textarea>
+                  <label for="chat-log">對話記錄</label>
+                </div>
+                <input type="input" class="form-control form-control-sm text-center" id="line-count" disabled>
               </div>
-              <div class="form-floating">
-                <input class="form-control mb-2" id="my-name" oninput="updateMyName()">
+              <div class="form-floating mb-2">
+                <input class="form-control" id="my-name" placeholder="發話人暱稱">
                 <label for="my-name">發話人暱稱（綠色訊息）</label>
               </div>
-                <button class="btn btn-outline-primary w-100" onclick="run()" data-bs-toggle="offcanvas"
-                  data-bs-target="#offcanvasNavbar">執行</button>
+              <button class="btn btn-outline-primary mb-2 w-100" onclick="run()" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar">執行</button>
+              <button class="btn btn-outline-danger mb-2 w-100" onclick="cleanUp()">清除</button>
+              <div class="form-floating mb-2">
+                <select class="form-select" id="themeSelect" onchange="themeChange()">
+                  <option value="default" selected>預設主題</option>
+                  <option value="dark-mode">深色主題</option>
+                </select>
+                <label for="themeSelect">樣式主題</label>
+              </div>
+              <!-- <div class="form-floating mb-2">
+                <input type="date" id="date-picker" class="form-control text-center" placeholder="YYYY/MM/DD">
+                <label for="date-picker">查詢日期</label>
+              </div> -->
             </div>
           </div>
         </div>
@@ -53,7 +68,7 @@
 
   <section id="output-section">
     <div class="container">
-      <div class="row">
+      <div class="row" id="output-container-row">
         <div class="col-6 offset-3 min-vh-100" id="output-container">
 
         </div>
