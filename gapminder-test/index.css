@@ -2,3 +2,9 @@ p.p-justify {
   text-align: justify;
   text-justify: inter-character;
 }
+
+@media (max-width: 575.98px) {
+  .w-xs-85 {
+    width: 85%;
+  }
+}
