@@ -1,6 +1,10 @@
-p.p-justify {
+p.text-justify {
   text-align: justify;
   text-justify: inter-character;
+}
+
+.form-check {
+  padding-left: 2.25rem;
 }
 
 @media (max-width: 575.98px) {
