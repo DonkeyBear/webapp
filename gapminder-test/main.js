@@ -18,9 +18,9 @@ function main() {
   document.getElementById("correct-ans-count").innerHTML = correctAnsCount;
   // change background-color correct and wrong answer into green and red.
   for (let i of correctAns) {
-    i.parentElement.className += " rounded-pill bg-success text-light";
+    i.parentElement.className += " rounded-pill-box bg-success text-light";
   }
   for (let i of wrongAns) {
-    i.parentElement.className += " rounded-pill bg-danger text-light";
+    i.parentElement.className += " rounded-pill-box bg-danger text-light";
   }
 }
