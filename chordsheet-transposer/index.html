@@ -1,15 +1,16 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   <title>和弦譜移調器</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="index.min.css">
+  <link rel="stylesheet" href="index.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-655T71RDG0"></script>
@@ -50,8 +51,8 @@
       <div class="offcanvas offcanvas-end show" data-bs-scroll="true" tabindex="-1" id="offcanvasNavbar">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title position-relative" id="offcanvasNavbarLabel">
-            和弦譜轉調器&nbsp;
-            <span class="badge rounded-pill bg-primary position-absolute  top-50 translate-middle-y"
+            和弦譜轉調器
+            <span class="badge rounded-pill bg-primary position-absolute top-50 translate-middle-y ms-1"
               id="version-badge">v1.3b</span>
           </h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
@@ -76,9 +77,16 @@
                 <option value="capo">移調夾</option>
               </select>
               <input class="form-control text-center w-50" id="transpose-value" type="number" value="0"
-                onchange="transpose()">
+                onfocus="document.getElementById('transpose-value').select()" onchange="transpose()">
             </div>
             <div>
+              <div class="input-group input-group-sm mb-2">
+                <span class="input-group-text text-center w-50">輸出樣式</span>
+                <select class="form-select text-center w-50">
+                  <option>91譜</option>
+                  <option>Ultimate Guitar</option>
+                </select>
+              </div>
               <input class="form-check-input" type="checkbox" id="check-replace-sharp-flat" onchange="transpose()">
               <label class="form-check-label" for="check-replace-sharp-flat">將升降記號標準化</label>
               <u><a title="將&quot;#&quot;（井字號）與&quot;b&quot;（小寫B）替換為標準的升降記號。">(?)</a></u>
@@ -118,17 +126,19 @@
               </div>
             </div>
             <hr>
-            <button class="btn btn-sm btn-outline-primary w-100 mb-2 mobile-only" onclick="responsiveOutput()">自動調整</button>
+            <button class="btn btn-sm btn-outline-primary w-100 mb-2 mobile-only"
+              onclick="responsiveOutput()">自動調整</button>
             <div class="row mb-2">
               <div class="col-5 position-relative">
                 <p class="position-absolute top-50 translate-middle-y">文字大小</p>
               </div>
               <div class="col-7">
                 <div class="input-group input-group-sm w-100">
-                  <button class="btn btn-outline-secondary btn-one-char" type="button"
+                  <button class="btn btn-outline-secondary btn-one-char" type="button" id="font-size-decrease"
                     onclick="changeFontSize(-0.5)">－</button>
-                  <input class="form-control text-center" id="input-fontSize" onchange="changeFontSize(0)">
-                  <button class="btn btn-outline-secondary btn-one-char" type="button"
+                  <input class="form-control text-center" id="input-fontSize"
+                    onfocus="document.getElementById('input-fontSize').select()" onchange="changeFontSize(0)">
+                  <button class="btn btn-outline-secondary btn-one-char" type="button" id="font-size-increase"
                     onclick="changeFontSize(0.5)">＋</button>
                 </div>
               </div>
@@ -139,10 +149,11 @@
               </div>
               <div class="col-7">
                 <div class="input-group input-group-sm w-100">
-                  <button class="btn btn-outline-secondary btn-one-char" type="button"
+                  <button class="btn btn-outline-secondary btn-one-char" type="button" id="line-height-decrease"
                     onclick="changeLineHeight(-0.05)">－</button>
-                  <input class="form-control text-center" id="input-lineHeight" onchange="changeLineHeight(0)">
-                  <button class="btn btn-outline-secondary btn-one-char" type="button"
+                  <input class="form-control text-center" id="input-lineHeight"
+                    onfocus="document.getElementById('input-lineHeight').select()" onchange="changeLineHeight(0)">
+                  <button class="btn btn-outline-secondary btn-one-char" type="button" id="line-height-increase"
                     onclick="changeLineHeight(0.05)">＋</button>
                 </div>
               </div>
@@ -166,7 +177,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
-  <script src="main.min.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>
