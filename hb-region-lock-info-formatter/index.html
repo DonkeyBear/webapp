@@ -4,32 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <title>Humble Bundle 鎖區資訊格式器</title>
-  <link rel="stylesheet" href="../common/github-flavored-css.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
-<body onload="detectBrowser()">
-  <div align="center">
-    <h1>Humble Bundle 鎖區資訊格式器</h1>
-    <p>
-      <input type="radio" id="browserSafari" name="browserCheck">
-      <label for="browserSafari">Safari</label>
-      <!-- TODO
-      <input type="radio" id="browserFirefox" name="browserCheck">
-      <label for="browserFirefox">Firefox</lßabel>
-      <input type="radio" id="browserChrome" name="browserCheck">
-      <label for="browserChrome">Chrome</label>
-      -->
-    </p>
-    <p>
-      <input id="regionLockInput" placeholder="請貼上鎖區訊息" size="40">
-    </p>
-    <p>
-      <button onclick="run()">執行</button>
-    </p>
-    <p>
-      <input id="result" placeholder="輸出結果" size="40" readonly><br>
-    <p id="lastExecuteTime" style="color:#AAAAAA"></p>
-    </p>
+<body>
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-6 offset-3">
+        <h1 class="text-center">Humble Bundle 鎖區資訊格式器</h1>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-6 offset-3">
+        <div class="form-floating">
+          <input class="form-control" id="region-lock-input" placeholder="請貼上鎖區訊息">
+          <label for="region-lock-input">鎖區訊息</label>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-6 offset-3">
+        <button class="btn btn-outline-primary w-100" onclick="run()">執行</button>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-6 offset-3">
+        <div class="form-floating">
+          <input class="form-control" id="result" placeholder="輸出結果" onfocus="document.getElementById('result').select()">
+          <label for="result">輸出結果</label>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="main.js"></script>
 </body>

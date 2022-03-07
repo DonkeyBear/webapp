@@ -1,48 +1,29 @@
 // main fuction
 function run() {
-  if (document.getElementById("regionLockInput").value == "") {
-    // if input is empty, then automatically paste into the input box.
-    // some browser may not support this part of function.
-    document.getElementById("regionLockInput").focus();
-    document.execCommand("paste");
-  }
+  let regionLockInput = document.getElementById("region-lock-input").value;
+  let regionLockArray = regionLockInput.split(" ");
+  let regionLockOutput;
+  let result;
 
-  var regionLockInput = document.getElementById("regionLockInput").value;
+  regionLockArray = removeItemAll(regionLockArray, "");
+  regionLockOutput = regionLockArray.join(", ")
 
-  if (document.getElementById("browserSafari").checked) {
-    // if using Safari
-    var regionLockInput = regionLockInput.trim().replaceAll(" ", ", ");
-  } else if (document.getElementById("browserFirefox").checked) {
-    // if using Firefox
-    null; // TODO
-  } else if (document.getElementById("browserChrome").checked) {
-    // if using Chrome
-    null; // TODO
-  }
-
-  if (regionLockInput.includes("TW")) {
-    var output = "　⤷*(only available in " + regionLockInput + ")*";
+  if (regionLockOutput.includes("TW")) {
+    result = "　⤷*(only available in " + regionLockOutput + ")*";
   } else {
-    var output = "　⤷*(**NOT** available in " + regionLockInput + ")*";
+    result = "　⤷*(**NOT** available in " + regionLockOutput + ")*";
   }
-  document.getElementById("result").value = output;
+  document.getElementById("result").value = result;
   document.getElementById("result").select();
   document.execCommand("copy");
-  alert("已複製輸出！");
-
-  var today = new Date();
-  var currentTime =
-    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  document.getElementById("lastExecuteTime").innerHTML = "最後執行時間 " + currentTime;
 }
 
-// detect browser type and automatically check corresponding radio button.
-function detectBrowser() {
-  if (navigator.userAgent.indexOf("Chrome") != -1) {
-    document.getElementById("browserChrome").checked = true;
-  } else if (navigator.userAgent.indexOf("Safari") != -1) {
-    document.getElementById("browserSafari").checked = true;
-  } else if (navigator.userAgent.indexOf("Firefox") != -1) {
-    document.getElementById("browserFirefox").checked = true;
+function removeItemAll(array, item) {
+  let newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] != item) {
+      newArray.push(array[i]);
+    }
   }
+  return newArray;
 }
