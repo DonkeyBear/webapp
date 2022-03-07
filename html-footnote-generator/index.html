@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML 腳註產生器</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-6 offset-3">
+        <div class="container">
+          <h1 class="text-center mb-2">HTML 腳註產生器</h1>
+          <div class="form-floating mb-2">
+            <input class="form-control text-center" id="input" type="number">
+            <label for="input">標註編號</label>
+          </div>
+          <div class="btn-group w-100 mb-2">
+            <button class="btn btn-outline-danger" onclick="clearAll()">清除</button>
+            <button class="btn btn-outline-primary" onclick="run()">執行</button>
+          </div>
+          <div class="form-floating mb-2">
+            <input class="form-control text-center" id="output-note"
+              onfocus="document.getElementById('output-note').select()" readonly>
+            <label for="output-note">標註</label>
+          </div>
+          <div class="form-floating">
+            <input class="form-control text-center" id="output-footnote"
+              onfocus="document.getElementById('output-footnote').select()" readonly>
+            <label for="output-footnote">腳註</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+
+</html>
