@@ -11,8 +11,8 @@ function main() {
 
   // count the correct answer and print it.
   for (let i of correctAns) {
-    if (i.checked == true) {
-      correctAnsCount += 1;
+    if (i.checked) {
+      correctAnsCount++;
     }
   }
   document.getElementById("correct-ans-count").innerHTML = correctAnsCount;
