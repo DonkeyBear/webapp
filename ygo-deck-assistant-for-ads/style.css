@@ -1,0 +1,21 @@
+h1 {
+  font-weight: bold;
+}
+
+h1 .badge.rounded-pill {
+  font-size: .5em;
+}
+
+.spinner-border-sm {
+  border-width: .12em;
+}
+
+textarea {
+  height: calc(100vh - 16rem);
+}
+
+@media (max-width: 767.98px) {
+  textarea {
+    height: calc(50vh - 8rem);
+  }
+}

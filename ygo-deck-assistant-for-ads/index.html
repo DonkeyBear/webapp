@@ -7,35 +7,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
   <title>遊戲王牌組助手 for ADS</title>
 </head>
 
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-12 my-2">
-        <h1>
+      <div class="col-12 mt-3">
+        <h1 class="position-relative">
           遊戲王牌組助手 for ADS
-          <span class="badge rounded-pill bg-primary">v0.1</span>
+          <span class="badge rounded-pill bg-secondary position-absolute top-50 translate-middle-y ms-1">
+            v0.1.1
+          </span>
         </h1>
       </div>
     </div>
     <div class="row">
       <div class="col-12 my-2">
-        <input type="file" class="form-control" id="file-input">
+        <input type="file" class="form-control" id="deck-file-input">
       </div>
     </div>
     <div class="row">
       <div class="col-md-6 my-2">
-        <textarea class="form-control" id="a"></textarea>
+        <textarea class="form-control" id="deck-text-input" spellcheck="false"></textarea>
       </div>
       <div class="col-md-6 my-2">
-        <textarea class="form-control" id="b"></textarea>
+        <textarea class="form-control" id="deck-text-output" spellcheck="false"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="col-12 my-2">
-        <button class="btn btn-outline-primary w-100" id="btn-convert">轉換</button>
+        <button class="btn btn-outline-primary w-100" id="btn-convert">
+          <span class="spinner-border spinner-border-sm loading"></span> 轉換<span class="loading">中……</span>
+        </button>
       </div>
     </div>
   </div>

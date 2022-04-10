@@ -1,18 +1,33 @@
-let fileInput = document.getElementById("file-input");
+let deckFileInput = document.getElementById("deck-file-input");
+let deckTextInput = document.getElementById("deck-text-input");
+let deckTextOutput = document.getElementById("deck-text-output");
 let fileName, fileContentText;
 
-fileInput.onchange = () => {
+window.onload = () => {
+  toggleElements("hide", "#btn-convert .loading");
+  let inputElms = [
+    deckFileInput,
+    deckTextInput,
+    deckTextOutput
+  ]
+  for (let i of inputElms) {
+    i.value = "";
+  }
+}
+
+deckFileInput.onchange = () => {
   let reader = new FileReader();
-  fileName = fileInput.files[0].name;
-  reader.readAsText(fileInput.files[0], "UTF-8");
+  fileName = deckFileInput.files[0].name;
+  reader.readAsText(deckFileInput.files[0], "UTF-8");
   reader.onload = evt => {
     fileContentText = evt.target.result;
-    document.getElementById("a").innerHTML = fileContentText;
+    deckTextInput.value = fileContentText;
   }
 }
 
 document.getElementById("btn-convert").onclick = () => {
-  let newFileContentText = document.getElementById("a").innerHTML.split("\n");
+  toggleElements("show", "#btn-convert .loading");
+  let newFileContentText = deckTextInput.value.split("\n");
   let cardsArray = [];
   for (let i of newFileContentText) {
     let cardId = Number(i.split("-")[0]);
@@ -30,8 +45,23 @@ document.getElementById("btn-convert").onclick = () => {
         newFileContentText[i] = newFileContentText[i].replace(cardId, `${String(cardId)} --${cardsDict[cardId]}`);
       }
     }
-    document.getElementById("b").innerHTML = newFileContentText.join("\n");
+    deckTextOutput.value = newFileContentText.join("\n");
+    toggleElements("hide", "#btn-convert .loading");
   })
+}
+
+function toggleElements(action, selector) {
+  if (action === "show") {
+    for (let i of document.querySelectorAll(selector)) {
+      i.style.display = "";
+    }
+  } else if (action === "hide") {
+    for (let i of document.querySelectorAll(selector)) {
+      i.style.display = "none";
+    }
+  } else {
+    console.log("toggleElements() with wrong action param.")
+  }
 }
 
 function saveStaticDataToFile() {
