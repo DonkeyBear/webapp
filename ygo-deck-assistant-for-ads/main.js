@@ -1,33 +1,44 @@
-let deckFileInput = document.getElementById("deck-file-input");
-let deckTextInput = document.getElementById("deck-text-input");
-let deckTextOutput = document.getElementById("deck-text-output");
+let inputElms = {
+  deckFileInput: document.getElementById("deck-file-input"),
+  deckTextInput: document.getElementById("deck-text-input"),
+  deckTextOutput: document.getElementById("deck-text-output")
+};
+let checkElms = {
+  zeroStuffing: {
+    element: document.getElementById("check-zero-stuffing"),
+    state: undefined
+  }
+};
 let fileName, fileContentText;
 
 window.onload = () => {
   toggleElements("hide", "#btn-convert .loading");
-  let inputElms = [
-    deckFileInput,
-    deckTextInput,
-    deckTextOutput
-  ]
-  for (let i of inputElms) {
+  for (let i of Object.values(inputElms)) {
     i.value = "";
   }
+  for (let i of Object.values(checkElms)) {
+    i.element.checked = false;
+  }
+  document.getElementById("select-output-type").value = document.querySelector("#select-output-type > option:first-child").value;
 }
 
-deckFileInput.onchange = () => {
+checkElms.zeroStuffing.element.onchange = () => {
+  checkElms.zeroStuffing.state = checkElms.zeroStuffing.element.checked;
+}
+
+inputElms.deckFileInput.onchange = () => {
   let reader = new FileReader();
-  fileName = deckFileInput.files[0].name;
-  reader.readAsText(deckFileInput.files[0], "UTF-8");
+  fileName = inputElms.deckFileInput.files[0].name;
+  reader.readAsText(inputElms.deckFileInput.files[0], "UTF-8");
   reader.onload = evt => {
     fileContentText = evt.target.result;
-    deckTextInput.value = fileContentText;
+    inputElms.deckTextInput.value = fileContentText;
   }
 }
 
 document.getElementById("btn-convert").onclick = () => {
   toggleElements("show", "#btn-convert .loading");
-  let newFileContentText = deckTextInput.value.split("\n");
+  let newFileContentText = inputElms.deckTextInput.value.split("\n");
   let cardsArray = [];
   for (let i of newFileContentText) {
     let cardId = Number(i.split("-")[0]);
@@ -38,14 +49,31 @@ document.getElementById("btn-convert").onclick = () => {
   }
   Promise.resolve(getCardNamesByIdList(cardsArray)).then(result => {
     let cardsDict = result;
-    console.log(cardsDict);
-    for (let i = 0; i < newFileContentText.length; i++) {
-      let cardId = Number(newFileContentText[i].split("-")[0]);
-      if (!Number.isNaN(cardId)) {
-        newFileContentText[i] = newFileContentText[i].replace(cardId, `${String(cardId)} --${cardsDict[cardId]}`);
+    if (document.getElementById("select-output-type").value === "ydk") {
+      for (let i = 0; i < newFileContentText.length; i++) {
+        let cardId = Number(newFileContentText[i].split("-")[0]);
+        if (!Number.isNaN(cardId)) {
+          let cardIdString = String(cardId);
+          if (checkElms.zeroStuffing.state === true) {
+            // Stuffing 0 before ID string till length is 8.
+            while (cardIdString.length < 8) {
+              cardIdString = "0" + cardIdString;
+            }
+          }
+          newFileContentText[i] = newFileContentText[i].replace(`${String(cardId)}`, `${cardIdString} --${cardsDict[cardId]}`);
+        }
       }
+      inputElms.deckTextOutput.value = newFileContentText.join("\n");
+    } else if (document.getElementById("select-output-type").value === "card-name") {
+      for (let i = 0; i < newFileContentText.length; i++) {
+        let cardId = Number(newFileContentText[i].split("-")[0]);
+        if (!Number.isNaN(cardId)) {
+          let cardIdString = String(cardId);
+          newFileContentText[i] = newFileContentText[i].replace(`${cardIdString}`, `${cardsDict[cardId]}`);
+        }
+      }
+      inputElms.deckTextOutput.value = newFileContentText.join("\n");
     }
-    deckTextOutput.value = newFileContentText.join("\n");
     toggleElements("hide", "#btn-convert .loading");
   })
 }

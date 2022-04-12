@@ -15,29 +15,48 @@
   <div class="container">
     <div class="row">
       <div class="col-12 mt-3">
-        <h1 class="position-relative">
-          遊戲王牌組助手 for ADS
-          <span class="badge rounded-pill bg-secondary position-absolute top-50 translate-middle-y ms-1">
-            v0.1.1
+        <h1>
+          遊戲王牌組助手
+          <span class="h1-small position-relative">
+            for ADS
+            <span class="badge rounded-pill position-absolute top-50 translate-middle-y">
+              v0.1.1
+            </span>
           </span>
         </h1>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-12 test">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check-zero-stuffing">
+          <label class="form-check-label" for="check-zero-stuffing">
+            前方補零
+          </label>
+        </div>
+        <select id="select-output-type" class="form-select">
+          <option value="ydk">YDK卡表</option>
+          <option value="card-name">卡名卡表</option>
+        </select>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-12 my-2">
         <input type="file" class="form-control" id="deck-file-input">
       </div>
     </div>
     <div class="row">
-      <div class="col-md-6 my-2">
+      <div class="col-md-6 mb-2">
         <textarea class="form-control" id="deck-text-input" spellcheck="false"></textarea>
       </div>
-      <div class="col-md-6 my-2">
+      <div class="col-md-6 mb-2">
         <textarea class="form-control" id="deck-text-output" spellcheck="false"></textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col-12 my-2">
+      <div class="col-12 mb-2">
         <button class="btn btn-outline-primary w-100" id="btn-convert">
           <span class="spinner-border spinner-border-sm loading"></span> 轉換<span class="loading">中……</span>
         </button>
