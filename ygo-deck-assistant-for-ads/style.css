@@ -2,8 +2,16 @@ h1 {
   font-weight: bold;
 }
 
+.h1-small {
+  font-size: .65em;
+  margin-left: -.2em;
+}
+
 h1 .badge.rounded-pill {
   font-size: .5em;
+  color: #b8bfc7;
+  border: #b8bfc7 solid 1px;
+  padding: .2rem .5rem;
 }
 
 .spinner-border-sm {
