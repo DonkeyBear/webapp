@@ -4,7 +4,7 @@ nav {
 #version-badge {
   font-size: 0.7rem;
 }
-#chat-log {
+#chat-history {
   height: 10rem;
 }
 .navbar-toggler {

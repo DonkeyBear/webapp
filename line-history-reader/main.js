@@ -9,20 +9,20 @@ lineCount();
 
 function run() {
   let myName = document.getElementById("my-name").value.trim();
-  let chatLogArray = document.getElementById("chat-log").value.split("\n");
+  let chatHistoryArray = document.getElementById("chat-history").value.split("\n");
 
-  for (let i of chatLogArray) {
+  for (let i of chatHistoryArray) {
 
     if (i.includes("\t")) {
-      let chatLogSentence = i.split("\t");
-      let msgTime = chatLogSentence[0] // time.
-      let msgFrom = chatLogSentence[1] // the person who sent the message.
-      let msgSelf = chatLogSentence[2] // message-self.
+      let chatHistorySentence = i.split("\t");
+      let msgTime = chatHistorySentence[0] // time.
+      let msgFrom = chatHistorySentence[1] // the person who sent the message.
+      let msgSelf = chatHistorySentence[2] // message-self.
 
       if (msgFrom.endsWith("已收回訊息")) {
         let newElement = document.createElement("div");
         newElement.setAttribute("class", "neutral-message");
-        newElement.innerHTML = chatLogSentence[1];
+        newElement.innerHTML = chatHistorySentence[1];
         document.getElementById("output-container").appendChild(newElement);
 
       } else if (msgSelf.startsWith("\"")) {
@@ -82,8 +82,8 @@ function run() {
 }
 
 function lineCount() {
-  let chatLog = document.getElementById("chat-log").value;
-  document.getElementById("line-count").value = "共 " + chatLog.split("\n").length + " 行";
+  let chatHistory = document.getElementById("chat-history").value;
+  document.getElementById("line-count").value = "共 " + chatHistory.split("\n").length + " 行";
 }
 
 function themeChange() {
@@ -117,6 +117,6 @@ function cleanUp() {
   newElement.className = "col-6 offset-3 min-vh-100";
   outputContainerRow.appendChild(newElement);
 
-  document.getElementById("chat-log").value = "";
+  document.getElementById("chat-history").value = "";
   document.getElementById("my-name").value = "";
 }
