@@ -1,0 +1,12 @@
+.row-hand label {
+  box-shadow: none !important;
+}
+
+.row-hand .btn {
+  transition: none;
+}
+
+.row-deal-btn button {
+  box-shadow: none !important;
+  transition: none;
+}

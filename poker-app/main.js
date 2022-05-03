@@ -1,20 +1,26 @@
-const deck = [
-  // S = Spade, H = Heart, D = Diamond, C = Club
-  "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13",
-  "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12", "H13",
-  "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13",
-  "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13"
-];
+const deck = {
+  "S1": "SPADE-1", "S2": "SPADE-2", "S3": "SPADE-3", "S4": "SPADE-4", "S5": "SPADE-5", "S6": "SPADE-6", "S7": "SPADE-7", "S8": "SPADE-8", "S9": "SPADE-9", "S10": "SPADE-10", "S11": "SPADE-11-JACK", "S12": "SPADE-12-QUEEN", "S13": "SPADE-13-KING",
+  "H1": "HEART-1", "H2": "HEART-2", "H3": "HEART-3", "H4": "HEART-4", "H5": "HEART-5", "H6": "HEART-6", "H7": "HEART-7", "H8": "HEART-8", "H9": "HEART-9", "H10": "HEART-10", "H11": "HEART-11-JACK", "H12": "HEART-12-QUEEN", "H13": "HEART-13-KING",
+  "D1": "DIAMOND-1", "D2": "DIAMOND-2", "D3": "DIAMOND-3", "D4": "DIAMOND-4", "D5": "DIAMOND-5", "D6": "DIAMOND-6", "D7": "DIAMOND-7", "D8": "DIAMOND-8", "D9": "DIAMOND-9", "D10": "DIAMOND-10", "D11": "DIAMOND-11-JACK", "D12": "DIAMOND-12-QUEEN", "D13": "DIAMOND-13-KING",
+  "C1": "CLUB-1", "C2": "CLUB-2", "C3": "CLUB-3", "C4": "CLUB-4", "C5": "CLUB-5", "C6": "CLUB-6", "C7": "CLUB-7", "C8": "CLUB-8", "C9": "CLUB-9", "C10": "CLUB-10", "C11": "CLUB-11-JACK", "C12": "CLUB-12-QUEEN", "C13": "CLUB-13-KING"
+}
 
 let inHandArray = [];
 
 document.getElementById("btn-draw").onclick = () => {
   inHandArray = [];
   for (let i = 0; i < 5; i++) {
-    inHandArray.push(deck[randint(52)]);
+    inHandArray.push(Object.keys(deck)[randint(52)]);
   }
   showHand();
+  showHandImg();
   showCheckHand();
+}
+
+function showHandImg() {
+  for (let i = 0; i < 5; i++) {
+    document.getElementById("hand-" + String(i+1)).src = "./cards/" + deck[inHandArray[i]] + ".svg";
+  }
 }
 
 function showHand() {
