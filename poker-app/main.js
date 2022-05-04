@@ -1,42 +1,69 @@
-const deck = {
-  "S1": "SPADE-1", "S2": "SPADE-2", "S3": "SPADE-3", "S4": "SPADE-4", "S5": "SPADE-5", "S6": "SPADE-6", "S7": "SPADE-7", "S8": "SPADE-8", "S9": "SPADE-9", "S10": "SPADE-10", "S11": "SPADE-11-JACK", "S12": "SPADE-12-QUEEN", "S13": "SPADE-13-KING",
-  "H1": "HEART-1", "H2": "HEART-2", "H3": "HEART-3", "H4": "HEART-4", "H5": "HEART-5", "H6": "HEART-6", "H7": "HEART-7", "H8": "HEART-8", "H9": "HEART-9", "H10": "HEART-10", "H11": "HEART-11-JACK", "H12": "HEART-12-QUEEN", "H13": "HEART-13-KING",
-  "D1": "DIAMOND-1", "D2": "DIAMOND-2", "D3": "DIAMOND-3", "D4": "DIAMOND-4", "D5": "DIAMOND-5", "D6": "DIAMOND-6", "D7": "DIAMOND-7", "D8": "DIAMOND-8", "D9": "DIAMOND-9", "D10": "DIAMOND-10", "D11": "DIAMOND-11-JACK", "D12": "DIAMOND-12-QUEEN", "D13": "DIAMOND-13-KING",
-  "C1": "CLUB-1", "C2": "CLUB-2", "C3": "CLUB-3", "C4": "CLUB-4", "C5": "CLUB-5", "C6": "CLUB-6", "C7": "CLUB-7", "C8": "CLUB-8", "C9": "CLUB-9", "C10": "CLUB-10", "C11": "CLUB-11-JACK", "C12": "CLUB-12-QUEEN", "C13": "CLUB-13-KING"
+const deck = [
+  // S = Spade, H = Heart, D = Diamond, C = Club
+  "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12", "S13",
+  "H1", "H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10", "H11", "H12", "H13",
+  "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10", "D11", "D12", "D13",
+  "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10", "C11", "C12", "C13"
+];
+
+const suitClassName = {
+  "S": "bi bi-suit-spade-fill card-suit text-dark",
+  "H": "bi bi-suit-heart-fill card-suit text-danger",
+  "D": "bi bi-suit-diamond-fill card-suit text-danger",
+  "C": "bi bi-suit-club-fill card-suit text-dark"
 }
 
 let inHandArray = [];
 
-document.getElementById("btn-draw").onclick = () => {
-  inHandArray = [];
+window.onload = () => {
+  document.getElementById("check-card-face-fix").onchange();
+  document.getElementById("btn-draw").onclick();
+}
+
+document.getElementById("btn-redraw").onclick = () => {
   for (let i = 0; i < 5; i++) {
-    inHandArray.push(Object.keys(deck)[randint(52)]);
+    document.getElementById("btn-hand-lock-" + String(i + 1)).checked = false;
+  }
+  document.getElementById("btn-draw").onclick();
+}
+
+document.getElementById("check-card-face-fix").onchange = () => {
+  let cardNumberArray = document.querySelectorAll(".card-number");
+  if (document.getElementById("check-card-face-fix").checked) {
+    for (let i of cardNumberArray) {
+      i.style = "margin-right: 0.05em;";
+    }
+  } else {
+    for (let i of cardNumberArray) {
+      i.style = "margin-right: -0.155em;";
+    }
+  }
+}
+
+document.getElementById("btn-draw").onclick = () => {
+  for (let i = 0; i < 5; i++) {
+    if (!document.getElementById("btn-hand-lock-" + String(i + 1)).checked) {
+      inHandArray[i] = deck[randint(52)];
+    }
   }
   showHand();
-  showHandImg();
   showCheckHand();
 }
 
-function showHandImg() {
-  for (let i = 0; i < 5; i++) {
-    document.getElementById("hand-" + String(i+1)).src = "./cards/" + deck[inHandArray[i]] + ".svg";
-  }
-}
-
 function showHand() {
-  let newArray = [];
-  for (let i of inHandArray) {
-    newArray.push(cardify(i));
+  let inHandSuit = inHandArray.map(card => { return card.substr(0, 1) });
+  let inHandNumber = inHandArray.map(card => { return card.substr(1) });
+  for (let i = 0; i < 5; i++) {
+    let inHandNumberElm = document.getElementById("hand-" + String(i + 1) + "-number");
+    let inHandSuitElm = document.getElementById("hand-" + String(i + 1) + "-suit");
+    inHandNumberElm.innerText = inHandNumber[i].replace("11", "J").replace("12", "Q").replace("13", "K").replace(/1$/, "A");
+    inHandSuitElm.className = suitClassName[inHandSuit[i]]
+    if (inHandSuit[i] === "H" || inHandSuit[i] === "D") {
+      inHandNumberElm.className = inHandNumberElm.className.replace("text-dark", "text-danger")
+    } else {
+      inHandNumberElm.className = inHandNumberElm.className.replace("text-danger", "text-dark")
+    }
   }
-  document.getElementById("in-hand").innerText = newArray.join(", ");
-}
-
-function cardify(card) {
-  let newCard = card.replace("S", "♠️").replace("H", "♥️").replace("D", "♦️").replace("C", "♣️");
-  if (newCard.includes("1")) {
-    newCard = newCard.replace("11", "J").replace("12", "Q").replace("13", "K").replace(/1$/, "A");
-  }
-  return newCard;
 }
 
 function randint(x) {
@@ -134,21 +161,23 @@ function checkHand() {
 
 function showCheckHand() {
   let checkHandDict = checkHand();
-  let elements = [
-    document.getElementById("span-two-pair"),
-    document.getElementById("span-three-of-a-kind"),
-    document.getElementById("span-straight"),
-    document.getElementById("span-flush"),
-    document.getElementById("span-full-house"),
-    document.getElementById("span-four-of-a-kind"),
-    document.getElementById("span-straight-flush"),
-    document.getElementById("span-royal-flush")
-  ]
-  for (let i = 0; i < 8; i++) {
-    if (Object.values(checkHandDict)[i]) {
-      elements[i].innerText = "Yes";
+  let checkHandDictKeys = Object.keys(checkHandDict);
+  let elements = {
+    twoPair: document.getElementById("list-two-pair"),
+    threeOfAKind: document.getElementById("list-three-of-a-kind"),
+    straight: document.getElementById("list-straight"),
+    flush: document.getElementById("list-flush"),
+    fullHouse: document.getElementById("list-full-house"),
+    fourOfAKind: document.getElementById("list-four-of-a-kind"),
+    straightFlush: document.getElementById("list-straight-flush"),
+    royalFlush: document.getElementById("list-royal-flush") 
+  }
+  
+  for (let i of checkHandDictKeys) {
+    if (checkHandDict[i]) {
+      elements[i].className += " list-group-item-success";
     } else {
-      elements[i].innerText = "No";
+      elements[i].className = elements[i].className.replace(" list-group-item-success", "");
     }
   }
 }

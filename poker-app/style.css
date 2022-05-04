@@ -1,3 +1,7 @@
+.container {
+  max-width: 25rem;
+}
+
 .row-hand label {
   box-shadow: none !important;
 }
@@ -9,4 +13,31 @@
 .row-deal-btn button {
   box-shadow: none !important;
   transition: none;
+}
+
+.card-number {
+  font-family: 'Roboto Slab';
+  letter-spacing: -0.05em;
+  /* margin-right: 0.05em; */
+  /* margin-right: -0.155em; */
+}
+
+.card-suit {
+  font-size: 0.85em;
+}
+
+.card-container {
+  font-size: 2rem;
+  line-height: 1.75rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.col-setting-button {
+  flex: 0 0 auto;
+  width: 20%;
+}
+
+.list-group-item {
+  border-color: rgb(210, 210, 210);
 }

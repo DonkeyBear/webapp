@@ -10,9 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
-  <!-- Bootstrap -->
+  <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <!-- my custom stylesheet -->
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -27,71 +28,112 @@
     </div>
     <div class="row mt-2 row-cols-5 gx-1 row-hand">
       <div class="col">
-        <label for="btn-check-outlined">
-          <img src="./cards/CLUB-1.svg" id="hand-1" class="img-fluid border border-secondary rounded"
-            alt="a playing card">
+        <label for="btn-hand-lock-1" class="d-block">
+          <div class="card-container border border-secondary rounded w-100 h-100 text-center">
+            <span id="hand-1-number" class="card-number text-dark">10</span>
+            <br>
+            <i id="hand-1-suit" class="bi bi-suit-spade-fill card-suit text-dark"></i>
+          </div>
         </label>
-        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-check-outlined">保留</label>
+        <input type="checkbox" class="btn-check" id="btn-hand-lock-1" autocomplete="off">
+        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-hand-lock-1">保留</label>
       </div>
       <div class="col">
-        <label for="btn-check-outlined">
-          <img src="./cards/CLUB-1.svg" id="hand-2" class="img-fluid border border-secondary rounded"
-            alt="a playing card">
+        <label for="btn-hand-lock-2" class="d-block">
+          <div class="card-container border border-secondary rounded w-100 h-100 text-center">
+            <span id="hand-2-number" class="card-number text-dark">J</span>
+            <br>
+            <i id="hand-2-suit" class="bi bi-suit-spade-fill card-suit text-dark"></i>
+          </div>
         </label>
-        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-check-outlined">保留</label>
+        <input type="checkbox" class="btn-check" id="btn-hand-lock-2" autocomplete="off">
+        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-hand-lock-2">保留</label>
       </div>
       <div class="col">
-        <label for="btn-check-outlined">
-          <img src="./cards/CLUB-1.svg" id="hand-3" class="img-fluid border border-secondary rounded"
-            alt="a playing card">
+        <label for="btn-hand-lock-3" class="d-block">
+          <div class="card-container border border-secondary rounded w-100 h-100 text-center">
+            <span id="hand-3-number" class="card-number text-dark">Q</span>
+            <br>
+            <i id="hand-3-suit" class="bi bi-suit-spade-fill card-suit text-dark"></i>
+          </div>
         </label>
-        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-check-outlined">保留</label>
+        <input type="checkbox" class="btn-check" id="btn-hand-lock-3" autocomplete="off">
+        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-hand-lock-3">保留</label>
       </div>
       <div class="col">
-        <label for="btn-check-outlined">
-          <img src="./cards/CLUB-1.svg" id="hand-4" class="img-fluid border border-secondary rounded"
-            alt="a playing card">
+        <label for="btn-hand-lock-4" class="d-block">
+          <div class="card-container border border-secondary rounded w-100 h-100 text-center">
+            <span id="hand-4-number" class="card-number text-dark">K</span>
+            <br>
+            <i id="hand-4-suit" class="bi bi-suit-spade-fill card-suit text-dark"></i>
+          </div>
         </label>
-        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-check-outlined">保留</label>
+        <input type="checkbox" class="btn-check" id="btn-hand-lock-4" autocomplete="off">
+        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-hand-lock-4">保留</label>
       </div>
       <div class="col">
-        <label for="btn-check-outlined">
-          <img src="./cards/CLUB-1.svg" id="hand-5" class="img-fluid border border-secondary rounded"
-            alt="a playing card">
+        <label for="btn-hand-lock-5" class="d-block">
+          <div class="card-container border border-secondary rounded w-100 h-100 text-center">
+            <span id="hand-5-number" class="card-number text-dark">A</span>
+            <br>
+            <i id="hand-5-suit" class="bi bi-suit-spade-fill card-suit text-dark"></i>
+          </div>
         </label>
-        <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-check-outlined">保留</label>
+        <input type="checkbox" class="btn-check" id="btn-hand-lock-5" autocomplete="off">
+        <label class="btn btn-outline-secondary w-100 mt-1" for="btn-hand-lock-5">保留</label>
       </div>
 
     </div>
-    <div class="row mt-3 row-cols-2 gx-1 row-deal-btn">
+    <div class="row mt-3 gx-1 row-deal-btn">
       <div class="col">
-        <button class="btn btn-lg btn-outline-primary w-100">換牌</button>
+        <button id="btn-draw" class="btn btn-lg btn-outline-primary w-100">換牌</button>
       </div>
       <div class="col">
-        <button class="btn btn-lg btn-outline-danger w-100">重發</button>
+        <button id="btn-redraw" class="btn btn-lg btn-outline-danger w-100">重發</button>
+      </div>
+      <div class="col col-setting-button">
+        <button class="btn btn-lg btn-outline-dark w-100" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+          <i class="bi bi-gear-fill"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col">
+        <ul class="list-group">
+          <li class="list-group-item" id="list-two-pair">兩對</li>
+          <li class="list-group-item" id="list-three-of-a-kind">三條</li>
+          <li class="list-group-item" id="list-straight">順子</li>
+          <li class="list-group-item" id="list-flush">同花</li>
+          <li class="list-group-item" id="list-full-house">葫蘆</li>
+          <li class="list-group-item" id="list-four-of-a-kind">鐵支</li>
+          <li class="list-group-item" id="list-straight-flush">同花順</li>
+          <li class="list-group-item" id="list-royal-flush">同花大順</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h4 id="offcanvasRightLabel" class="mb-0">選項</h4>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <hr class="my-0">
+    <div class="offcanvas-body">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="check-card-face-fix">
+        <label class="form-check-label" for="check-card-face-fix">
+          牌面錯位調整
+        </label>
       </div>
     </div>
   </div>
 
-  <hr>
-
-  <p>手牌：<br><span id="in-hand"></span></p>
-  <button id="btn-draw">抽牌</button>
-  <p>
-    兩對：<span id="span-two-pair"></span><br>
-    三條：<span id="span-three-of-a-kind"></span><br>
-    順子：<span id="span-straight"></span><br>
-    同花：<span id="span-flush"></span><br>
-    葫蘆：<span id="span-full-house"></span><br>
-    鐵支：<span id="span-four-of-a-kind"></span><br>
-    同花順：<span id="span-straight-flush"></span><br>
-    同花大順：<span id="span-royal-flush"></span><br>
-  </p>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
   <script src="./main.js"></script>
 </body>
 
