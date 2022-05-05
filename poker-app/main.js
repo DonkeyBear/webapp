@@ -13,6 +13,17 @@ const suitClassName = {
   "C": "bi bi-suit-club-fill card-suit text-dark"
 }
 
+const checkHandElms = {
+  twoPair: document.getElementById("list-two-pair"),
+  threeOfAKind: document.getElementById("list-three-of-a-kind"),
+  straight: document.getElementById("list-straight"),
+  flush: document.getElementById("list-flush"),
+  fullHouse: document.getElementById("list-full-house"),
+  fourOfAKind: document.getElementById("list-four-of-a-kind"),
+  straightFlush: document.getElementById("list-straight-flush"),
+  royalFlush: document.getElementById("list-royal-flush") 
+}
+
 let inHandArray = [];
 
 window.onload = () => {
@@ -41,9 +52,12 @@ document.getElementById("check-card-face-fix").onchange = () => {
 }
 
 document.getElementById("btn-draw").onclick = () => {
+  for(let i of Object.values(checkHandElms)) {
+    i.className = i.className.replace(" list-group-item-success", "");
+  }
   for (let i = 0; i < 5; i++) {
     if (!document.getElementById("btn-hand-lock-" + String(i + 1)).checked) {
-      inHandArray[i] = deck[randint(52)];
+      inHandArray[i] = deck[randint(deck.length)];
     }
   }
   showHand();
@@ -162,22 +176,10 @@ function checkHand() {
 function showCheckHand() {
   let checkHandDict = checkHand();
   let checkHandDictKeys = Object.keys(checkHandDict);
-  let elements = {
-    twoPair: document.getElementById("list-two-pair"),
-    threeOfAKind: document.getElementById("list-three-of-a-kind"),
-    straight: document.getElementById("list-straight"),
-    flush: document.getElementById("list-flush"),
-    fullHouse: document.getElementById("list-full-house"),
-    fourOfAKind: document.getElementById("list-four-of-a-kind"),
-    straightFlush: document.getElementById("list-straight-flush"),
-    royalFlush: document.getElementById("list-royal-flush") 
-  }
   
   for (let i of checkHandDictKeys) {
-    if (checkHandDict[i]) {
-      elements[i].className += " list-group-item-success";
-    } else {
-      elements[i].className = elements[i].className.replace(" list-group-item-success", "");
+    if (checkHandDict[i] === true) {
+      checkHandElms[i].className += " list-group-item-success";
     }
   }
 }
