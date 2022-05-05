@@ -24,6 +24,17 @@ const checkHandElms = {
   royalFlush: document.getElementById("list-royal-flush") 
 }
 
+let checkHandCount = {
+  twoPair: 0,
+  threeOfAKind: 0,
+  straight: 0,
+  flush: 0,
+  fullHouse: 0,
+  fourOfAKind: 0,
+  straightFlush: 0,
+  royalFlush: 0
+}
+
 let inHandArray = [];
 
 window.onload = () => {
@@ -180,6 +191,8 @@ function showCheckHand() {
   for (let i of checkHandDictKeys) {
     if (checkHandDict[i] === true) {
       checkHandElms[i].className += " list-group-item-success";
+      checkHandCount[i] += 1;
+      checkHandElms[i].getElementsByTagName('span')[0].innerText = String(checkHandCount[i]);
     }
   }
 }
