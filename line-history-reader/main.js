@@ -83,7 +83,8 @@ function run() {
 
 function lineCount() {
   let chatHistory = document.getElementById("chat-history").value;
-  document.getElementById("line-count").value = "共 " + chatHistory.split("\n").length + " 行";
+  let lineCount = (chatHistory.match(/\n/g) || []).length;
+  document.getElementById("line-count").value = `共 ${lineCount} 行`;
 }
 
 function themeChange() {
