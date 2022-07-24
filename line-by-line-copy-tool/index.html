@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>逐行複製小工具</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+  <div id="app" class="container 100vw" v-cloak>
+    <div class="row mt-2">
+      <div class="col">
+        <h1 class="fw-bold text-center">逐行複製小工具</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div id="div-main-textarea" class="form-floating" :style="{ display: mainTextareaDisplay }">
+          <textarea class="form-control" placeholder="原始文本" id="main-textarea" spellcheck="false" v-model="mainTextarea"></textarea>
+          <label for="main-textarea">原始文本</label>
+        </div>
+        <div id="div-main-select" class="form-floating" :style="{ display: mainSelectDisplay }">
+          <select class="form-select" id="main-select" multiple>
+            <option v-for="item in mainSelect" :value="item">{{ item }}</option>
+          </select>
+          <label for="main-select">逐行列表</label>
+        </div>
+      </div>
+    </div>
+    <div class="row eow-cols-2 mt-2">
+      <div class="col pe-1">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="input-before" placeholder="前綴">
+          <label for="input-before">前綴</label>
+        </div>
+      </div>
+      <div class="col ps-1">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="input-after" placeholder="後綴">
+          <label for="input-after">後綴</label>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <button class="btn btn-outline-primary w-100" @click="switchMode">{{ buttonEdit }}</button>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="output" placeholder="輸出">
+          <label for="output">輸出</label>
+        </div>
+      </div>
+    </div>
+    <div class="row row-cols-3 mt-2">
+      <div class="col pe-1">
+        <button class="btn btn-primary w-100" :disabled="btnDisabled">上一行</button>
+      </div>
+      <div class="col px-1">
+        <button class="btn btn-primary w-100">複製</button>
+      </div>
+      <div class="col ps-1">
+        <button class="btn btn-primary w-100" :disabled="btnDisabled">下一行</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+
+</html>

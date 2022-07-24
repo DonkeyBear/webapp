@@ -1,0 +1,15 @@
+#app {
+  max-width: 40rem;
+}
+
+#main-textarea, #main-select {
+  height: calc(60vh - 10rem);
+}
+
+#main-textarea {
+  resize: none;
+}
+
+[v-cloak] {
+  display: none;
+}
