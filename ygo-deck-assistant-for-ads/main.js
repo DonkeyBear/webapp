@@ -50,9 +50,10 @@ document.getElementById("btn-convert").onclick = () => {
   Promise.resolve(getCardNamesByIdList(cardsArray)).then(result => {
     let cardsDict = result;
     if (document.getElementById("select-output-type").value === "ydk") {
+      // YDK卡表
       for (let i = 0; i < newFileContentText.length; i++) {
         let cardId = Number(newFileContentText[i].split("-")[0]);
-        if (!Number.isNaN(cardId)) {
+        if (!Number.isNaN(cardId) && cardId != 0) {
           let cardIdString = String(cardId);
           if (checkElms.zeroStuffing.state === true) {
             // Stuffing 0 before ID string till length is 8.
@@ -65,11 +66,33 @@ document.getElementById("btn-convert").onclick = () => {
       }
       inputElms.deckTextOutput.value = newFileContentText.join("\n");
     } else if (document.getElementById("select-output-type").value === "card-name") {
+      // 卡名卡表 ×
+      let cardNumberDict = {};
       for (let i = 0; i < newFileContentText.length; i++) {
         let cardId = Number(newFileContentText[i].split("-")[0]);
-        if (!Number.isNaN(cardId)) {
+        if (!Number.isNaN(cardId) && cardId != 0) {
           let cardIdString = String(cardId);
+          if (Object.keys(cardNumberDict).includes(cardIdString)) {
+            cardNumberDict[cardIdString] += 1;
+          } else {
+            cardNumberDict[cardIdString] = 1;
+          }
           newFileContentText[i] = newFileContentText[i].replace(`${cardIdString}`, `${cardsDict[cardId]}`);
+        } else {
+          let fixedSring = newFileContentText[i].toLowerCase();
+          if (fixedSring.startsWith("#created by ")) {
+            if (fixedSring.split("#created by ")[1].trim() !== "...") {
+              newFileContentText[i] = `由 ${fixedSring.split("#created by ")[1].trim()} 建立`;
+            } else {
+              newFileContentText[i] = "";
+            }
+          } else if (fixedSring.startsWith("#main")) {
+            newFileContentText[i] = "主牌組：";
+          } else if (fixedSring.startsWith("#extra")) {
+            newFileContentText[i] = "額外牌組：";
+          } else if (fixedSring.startsWith("!side")) {
+            newFileContentText[i] = "副牌組：";
+          }
         }
       }
       inputElms.deckTextOutput.value = newFileContentText.join("\n");
@@ -99,4 +122,8 @@ function saveStaticDataToFile() {
   let fileNameSplit = fileName.split(".");
   fileNameSplit[fileNameSplit.length - 2] += "_new";
   saveAs(blob, fileNameSplit.join("."));
+}
+
+function countInArray(array, target) {
+  return array.filter(item => item === target).length;
 }
