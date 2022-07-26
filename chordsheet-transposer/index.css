@@ -24,7 +24,6 @@ textarea.form-control {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  overflow: hidden;
 }
 #color-picking-menu {
   border-left: 0.3em solid #BBBBBB;

@@ -153,7 +153,7 @@ function transpose() {
   // edit "is-chord" class after print
   if (document.getElementById("check-background-color").checked) {
     for (let i = 0; i < inChordContent.length; i++) {
-      inChordContent[i].style.cssText += "background-color:" + colorPalette["chordbg"];
+      inChordContent[i].style.cssText += "padding: 0.1rem 0.25rem; margin: -0.25rem; border-radius: 0.2rem; background-color:" + colorPalette["chordbg"];
     }
   }
 }
