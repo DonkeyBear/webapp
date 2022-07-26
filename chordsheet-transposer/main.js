@@ -134,7 +134,7 @@ function transpose() {
   }
 
   if (document.getElementById("check-monospace").checked) {
-    document.getElementById("output").style.cssText += "font-family: monospace, Arial, Helvetica, sans-serif;";
+    document.getElementById("output").style.cssText += "font-family: SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace, Arial, Helvetica, sans-serif;";
   } else {
     document.getElementById("output").style.cssText += "font-family: Arial, Helvetica, sans-serif;";
   }
@@ -148,6 +148,9 @@ function transpose() {
   var inChordContent = document.getElementsByClassName("is-chord");
   for (let i = 0; i < inChordContent.length; i++) {
     inChordContent[i].style.cssText += "color:" + colorPalette["chord"];
+    if (document.getElementById("check-monospace").checked) {
+      inChordContent[i].style.cssText += "; font-weight: bold;";
+    }
   }
 
   // edit "is-chord" class after print
