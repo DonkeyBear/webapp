@@ -53,7 +53,7 @@
           <h5 class="offcanvas-title position-relative" id="offcanvasNavbarLabel">
             和弦譜轉調器
             <span class="badge rounded-pill bg-primary position-absolute top-50 translate-middle-y ms-1"
-              id="version-badge">v1.3b</span>
+              id="version-badge">v1.4</span>
           </h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
@@ -80,7 +80,7 @@
                 onfocus="document.getElementById('transpose-value').select()" onchange="transpose()">
             </div>
             <div>
-              <div class="input-group input-group-sm mb-2">
+              <!-- <div class="input-group input-group-sm mb-2">
                 <span class="input-group-text text-center w-50">輸出樣式</span>
                 <select class="form-select text-center w-50">
                   <option>91譜</option>
@@ -90,7 +90,7 @@
               <input class="form-check-input" type="checkbox" id="check-replace-sharp-flat" onchange="transpose()">
               <label class="form-check-label" for="check-replace-sharp-flat">將升降記號標準化</label>
               <u><a title="將&quot;#&quot;（井字號）與&quot;b&quot;（小寫B）替換為標準的升降記號。">(?)</a></u>
-              <br>
+              <br> -->
               <input class="form-check-input" type="checkbox" id="check-91pu-optimize" onchange="transpose()">
               <label class="form-check-label" for="check-91pu-optimize">對91譜進行最佳化</label>
               <u><a title="針對91譜修改演算法，減少將歌詞內之英文誤判為和弦的錯誤。">(?)</a></u>
@@ -102,7 +102,7 @@
               <input class="form-check-input" type="checkbox" id="check-background-color" onchange="transpose()">
               <label class="form-check-label" for="check-background-color">將和弦加上底色</label>
               <u><a title="將和弦記號加上底色。">(?)</a></u>
-              <br>
+              <!-- <br>
               <input class="form-check-input" type="checkbox" id="check-color-picking"
                 onclick="switchMenu('color-picking-menu')">
               <label class="form-check-label" for="check-color-picking">自訂配色</label>
@@ -123,7 +123,7 @@
                   <input class="form-control form-control-color" type="color" value="#EEEEEE" id="input-color-chordbg">
                   <label class="form-check-label" for="input-color-chordbg">和弦底色</label>
                 </div>
-              </div>
+              </div> -->
             </div>
             <hr>
             <button class="btn btn-sm btn-outline-primary w-100 mb-2 mobile-only"

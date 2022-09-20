@@ -26,6 +26,12 @@ var chordSheetLengthLast = 0;
 // ==========
 // execute once at start.
 // ==========
+let queryString = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+});
+if (queryString.sheet) {
+  document.getElementById("chordSheet").value = decodeURI(queryString.sheet).replaceAll("[[sharp]]", "#");
+}
 document.getElementById("input-fontSize").value = "14.0";
 document.getElementById("input-lineHeight").value = "1.50";
 forSafari();
@@ -107,7 +113,7 @@ function transpose() {
   }
 
   if (document.getElementById("check-91pu-optimize").checked) {
-    chordSheetArray = chordSheet.split("\n");
+    let chordSheetArray = chordSheet.split("\n");
     for (let i = 0; i < chordSheetArray.length; i++) {
       // if "|" is in the line, it's a chord line.
       if (chordSheetArray[i].indexOf("|") != -1) {
