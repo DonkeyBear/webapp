@@ -90,7 +90,7 @@ function transpose() {
   var transposeType = document.getElementById("select-transpose-type").value;
   var transposeValue = Number(document.getElementById("transpose-value").value);
 
-  if (document.getElementById("check-color-picking").checked) {
+  /* if (document.getElementById("check-color-picking").checked) {
     var colorPalette = {};
     colorPalette["bg"] = document.getElementById("input-color-bg").value;
     colorPalette["text"] = document.getElementById("input-color-text").value;
@@ -98,7 +98,7 @@ function transpose() {
     colorPalette["chordbg"] = document.getElementById("input-color-chordbg").value;
   } else {
     var colorPalette = { bg: "#FFFFFF", text: "#666666", chord: "#246FB5", chordbg: "#EEEEEE" };
-  }
+  } */
 
   // symbol correction
   chordSheet = chordSheet.replaceAll("♯", "#");
@@ -132,12 +132,12 @@ function transpose() {
     chordSheet = transposeThis(chordSheet);
   }
 
-  if (document.getElementById("check-replace-sharp-flat").checked) {
+  /* if (document.getElementById("check-replace-sharp-flat").checked) {
     chordSheet = chordSheet.replaceAll(/([A-G]|(<sup>))#/g, "$&SHARP-SYMBOL");
     chordSheet = chordSheet.replaceAll(/([A-G]|(<sup>))b/g, "$&FLAT-SYMBOL");
     chordSheet = chordSheet.replaceAll("#SHARP-SYMBOL", "<span class=\"music-symbol\">♯</span>");
     chordSheet = chordSheet.replaceAll("bFLAT-SYMBOL", "<span class=\"music-symbol\">♭</span>");
-  }
+  } */
 
   if (document.getElementById("check-monospace").checked) {
     document.getElementById("output").style.cssText += "font-family: SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace, Arial, Helvetica, sans-serif;";
@@ -149,14 +149,14 @@ function transpose() {
   document.getElementById("output").innerHTML = chordSheet;
 
   // change colors
-  document.querySelector("body").style.backgroundColor = colorPalette["bg"];
-  document.getElementById("output").style.cssText += "color:" + colorPalette["text"];
+  /* document.querySelector("body").style.backgroundColor = colorPalette["bg"];
+  document.getElementById("output").style.cssText += "color:" + colorPalette["text"]; */
   var inChordContent = document.getElementsByClassName("is-chord");
   for (let i = 0; i < inChordContent.length; i++) {
-    inChordContent[i].style.cssText += "color:" + colorPalette["chord"];
-    if (document.getElementById("check-monospace").checked) {
+    inChordContent[i].style.cssText += "color: #246FB5";
+    /* if (document.getElementById("check-monospace").checked) {
       inChordContent[i].style.cssText += "; font-weight: bold;";
-    }
+    } */
   }
 
   // edit "is-chord" class after print
