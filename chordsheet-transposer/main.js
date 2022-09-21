@@ -30,7 +30,11 @@ let queryString = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 if (queryString.sheet) {
-  document.getElementById("chordSheet").value = decodeURI(queryString.sheet).replaceAll("[[sharp]]", "#");
+  let querySheet = queryString.sheet.replace(/\{\w+\}/g, (match) => {
+    return "%C2%A0".repeat(parseInt(match.slice(1, -1), 36));
+  });
+  document.getElementById("chordSheet").value = decodeURI(querySheet).replaceAll("[s]", "#");
+  cleanUpBreakLine("chordSheet");
 }
 document.getElementById("input-fontSize").value = "14.0";
 document.getElementById("input-lineHeight").value = "1.50";
