@@ -30,11 +30,14 @@ let queryString = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 if (queryString.sheet) {
+  let textareaContent = document.getElementById("chordSheet");
   let querySheet = queryString.sheet.replace(/\{\w+\}/g, (match) => {
     return "%C2%A0".repeat(parseInt(match.slice(1, -1), 36));
   });
-  document.getElementById("chordSheet").value = decodeURI(querySheet).replaceAll("[s]", "#");
-  cleanUpBreakLine("chordSheet");
+  textareaContent.value = decodeURI(querySheet).replaceAll("[s]", "#");
+  if ((textareaContent.value.match(/\n/g) || []).length * 2 === (textareaContent.value.match(/\n\n/g) || []).length) {
+    textareaContent.value = textareaContent.value.replaceAll("\n\n", "\n");
+  }
 }
 document.getElementById("input-fontSize").value = "14.0";
 document.getElementById("input-lineHeight").value = "1.50";
@@ -111,7 +114,7 @@ function transpose() {
   // transpose value correction
   transposeValue = transposeValue % 12;
   document.getElementById("transpose-value").value = transposeValue;
-  
+
   if (transposeType == "capo") {
     transposeValue = 0 - transposeValue;
   }
@@ -262,7 +265,7 @@ function responsiveOutput() {
 
   if (widthOverflow(output)) {
     while (widthOverflow(output)) {
-        changeFontSize(-1);
+      changeFontSize(-1);
     }
   } else {
     while (widthOverflow(output) == false) {
