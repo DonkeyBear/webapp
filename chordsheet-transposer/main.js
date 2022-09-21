@@ -35,9 +35,10 @@ if (queryString.sheet) {
     return "%C2%A0".repeat(parseInt(match.slice(1, -1), 36));
   });
   textareaContent.value = decodeURI(querySheet).replaceAll("[s]", "#");
-  if ((textareaContent.value.match(/\n/g) || []).length * 2 === (textareaContent.value.match(/\n\n/g) || []).length) {
+  if ((textareaContent.value.match(/\n\n/g) || []).length * 2 === (textareaContent.value.match(/\n/g) || []).length) {
     textareaContent.value = textareaContent.value.replaceAll("\n\n", "\n");
   }
+  document.getElementById("check-91pu-optimize").checked = true;
 }
 document.getElementById("input-fontSize").value = "14.0";
 document.getElementById("input-lineHeight").value = "1.50";
