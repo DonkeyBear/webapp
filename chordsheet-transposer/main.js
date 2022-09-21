@@ -157,8 +157,8 @@ function transpose() {
   document.getElementById("output").innerHTML = chordSheet;
 
   // change colors
-  /* document.querySelector("body").style.backgroundColor = colorPalette["bg"];
-  document.getElementById("output").style.cssText += "color:" + colorPalette["text"]; */
+  // document.querySelector("body").style.backgroundColor = colorPalette["bg"];
+  document.getElementById("output").style.cssText += "color: #666666";
   var inChordContent = document.getElementsByClassName("is-chord");
   for (let i = 0; i < inChordContent.length; i++) {
     inChordContent[i].style.cssText += "color: #246FB5";
