@@ -1,0 +1,96 @@
+#output-section {
+    &.theme-default {
+        background-color: #E2DCD5;
+
+        #output {
+            color: #333333;
+        }
+
+        #output-title {
+            &.part-male {
+                color: #4F5161;
+            }
+
+            &.part-female {
+                color: #6B2F37;
+            }
+
+            &.part-both {
+                color: #515035;
+            }
+        }
+    }
+
+    &.theme-dark {
+        background-color: #333333;
+
+        #output {
+            color: #E2DCD5;
+        }
+
+        #output-title {
+            &.part-male {
+                color: #aab9cf;
+            }
+
+            &.part-female {
+                color: #dbadb4;
+            }
+
+            &.part-both {
+                color: #b9c9ac;
+            }
+        }
+    }
+}
+
+nav {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#output-title {
+    font-size: 30px;
+    font-weight: 700;
+    font-family: Arial, Helvetica, "微软雅黑", "Microsoft JhengHei", sans-serif
+}
+
+#version-badge {
+    font-size: 0.7rem;
+}
+
+#output-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#output {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.65);
+    padding: 0.25rem;
+}
+
+.offcanvas-header {
+    padding: 1.2rem 1.7rem;
+    border-bottom: 1px solid #DEE2E6;
+}
+
+@media (max-width: 575.98px) {
+    #offcanvasNavbar {
+        width: 100%;
+        border-left: 0;
+    }
+}
+
+@media (min-width: 576px) {
+    .mobile-only {
+        display: none;
+    }
+}
