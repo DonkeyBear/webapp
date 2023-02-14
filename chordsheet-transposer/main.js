@@ -276,3 +276,19 @@ function responsiveOutput() {
   }
   inputFontSize = inputFontSize.value;
 }
+
+const app = Vue.createApp({
+  data() {
+    return {
+      theme: "theme-default",
+      options: {
+        themes: [
+          { label: "預設", value: "theme-default" },
+          { label: "深色", value: "theme-dark" }
+        ]
+      }
+    }
+  }
+});
+
+app.mount("#app-container")
