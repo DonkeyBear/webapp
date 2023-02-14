@@ -1,3 +1,9 @@
 test/
+node_modules/
 .vscode/settings.json
 .DS_Store
+
+[WIP]
+devilish-calculations/
+chord-printer/
+chordsheet-transposer/91plus/
