@@ -1,0 +1,32 @@
+.tag-list {
+    .tag {
+      display: inline;
+      width: auto;
+      padding: 0.15rem 0.5rem;
+      margin: 0 0.3rem 0.4rem 0;
+    }
+  }
+  
+  hr {
+    margin: 1.5rem 0;
+  }
+  
+  input[readonly] {
+    cursor: pointer;
+  }
+  
+  textarea {
+    cursor: pointer;
+    resize: vertical;
+  }
+  
+  h3 {
+    margin-bottom: 0;
+    & + div {
+      margin-bottom: var(--typography-spacing-vertical);
+      & > small {
+        color: var(--muted-color);
+      }
+    }
+  }
+  

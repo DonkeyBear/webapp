@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stable Diffusion 提示詞整理器</title>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main id="app" class="container">
+    <h1>Stable Diffusion 提示詞整理器</h1>
+    <h3>輸入</h3>
+    <div>
+      <small>可一次輸入多個提示詞，以半形逗號（<code>,</code>）分隔</small>
+    </div>
+    <div class="grid">
+      <div>
+        <label for="input-prompt">正面提示詞（positive prompt）</label>
+        <input v-model="inputPrompt" @keydown.enter="addPromptToList(inputPrompt, list.prompt);inputPrompt = ''"
+          type="text" id="input-prompt" placeholder="例：masterpiece，輸入後按下 Enter" autocomplete="off">
+        <div class="tag-list">
+          <template v-for="prompt in list.prompt">
+            <button class="tag" @click="removeValueOfArray(prompt, list.prompt)">{{ prompt }}</button>
+          </template>
+        </div>
+      </div>
+      <div>
+        <label for="input-negative-prompt">負面提示詞（negative prompt）</label>
+        <input v-model="inputNegativePrompt"
+          @keydown.enter="addPromptToList(inputNegativePrompt, list.negativePrompt);inputNegativePrompt = ''"
+          type="text" id="input-negative-prompt" placeholder="例：low quality，輸入後按下 Enter" autocomplete="off">
+        <div class="tag-list">
+          <template v-for="prompt in list.negativePrompt">
+            <button class="tag" @click="removeValueOfArray(prompt, list.negativePrompt)">{{ prompt }}</button>
+          </template>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <h3>輸出</h3>
+    <div>
+      <small>點擊文字框即可自動複製其中的文字</small>
+    </div>
+    <div class="grid">
+      <div>
+        <label for="output-prompt">完整正面提示詞（positive prompt）</label>
+        <input :value="list.prompt.join(', ')" @click="copyPrompts(list.prompt.join(', '))" type="text"
+          placeholder="在上方輸入後即於此自動生成完整提示詞" readonly>
+      </div>
+      <div>
+        <label for="output-negative-prompt">完整負面提示詞（negative prompt）</label>
+        <input :value="list.negativePrompt.join(', ')" @click="copyPrompts(list.negativePrompt.join(', '))" type="text"
+          placeholder="在上方輸入後即於此自動生成完整負面提示詞" readonly>
+      </div>
+    </div>
+    <div>
+      <label for="output-prompts">完整提示詞（prompts）</label>
+      <textarea id="output-prompts" @click="copyPrompts(getPrompts())" placeholder="在上方輸入後即於此自動生成完整提示詞組合（供記錄、分享用）"
+        rows="7" readonly>{{ getPrompts() }}</textarea>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.0-alpha.4/vue.global.prod.min.js"
+      integrity="sha512-TpxN2+4GwYJiB9dR1jj4E3RvNggyXMHYDTxv+eMi9pH8YMeREtMBgoYszgaDoxavWC8adiQn92GHj1wDx2klMg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./main.js"></script>
+  </main>
+</body>
+
+</html>
