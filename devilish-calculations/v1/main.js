@@ -11,6 +11,10 @@ const app = Vue.createApp({ // eslint-disable-line no-undef
         answer: '　'
       },
       result: '', // 'correct' 或 'incorrect'，表示答題判定結果
+      score: {
+        correct: 0,
+        incorrect: 0
+      },
       rules: {
         backtrack: 2, // N 回溯
         timerAfterAnswer: 500, // 答題後切換到下一題前的等待時間（ms）
@@ -45,19 +49,39 @@ const app = Vue.createApp({ // eslint-disable-line no-undef
     toFullwidthNum (nums) {
       return String(nums).replace(/\d/g, num => String.fromCharCode(num.charCodeAt(0) + 0xfee0));
     },
-    paddingNum (num) {
-      return num > 9 ? String(num) : `0${num}`;
+    restart () {
+      this.quiz.questions = [];
+      this.quiz.answers = [];
+      this.score.correct = 0;
+      this.score.incorrect = 0;
+      for (let i = 0; i <= this.rules.backtrack; i++) {
+        setTimeout(() => { this.generateQuestion() }, this.rules.timerShowingQuestion * i);
+      }
+    },
+    simulateKeydown (keydown = '') {
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: keydown }));
     },
     onKeydown (event) {
       // 鍵盤輸入時觸發
-      if (event.key.match(/\D/)) { return }
-      // 輸入為數字鍵的話
-      // 在換下一題之前暫時移除事件監聽器
-      window.removeEventListener('keydown', this.onKeydown);
-      const backtrackIndex = this.quiz.questions.length - 1 - this.rules.backtrack;
+      if (event.key.toLowerCase() === 'enter') { this.restart() }
+      // 輸入不為數字鍵或空白鍵則不做後續處理
+      if (event.key.match(/\D/) && event.key !== ' ') { return }
+
+      window.removeEventListener('keydown', this.onKeydown); // 在換下一題之前暫時移除事件監聽器
+
       // 改變狀態，順便改變 class
-      this.result = this.toFullwidthNum(event.key) === this.quiz.answers[backtrackIndex] ? 'correct' : 'incorrect';
-      this.bottomFormula.answer = this.toFullwidthNum(event.key);
+      const backtrackIndex = this.quiz.questions.length - 1 - this.rules.backtrack;
+      if (this.toFullwidthNum(event.key) === this.quiz.answers[backtrackIndex]) {
+        // 答對的情況
+        this.result = 'correct';
+        this.score.correct++;
+      } else {
+        // 答錯的情況
+        this.result = 'incorrect';
+        this.score.incorrect++;
+      }
+      // 如果跳過（空白鍵）的話顯示正確答案，其餘情況顯示輸入的數字
+      this.bottomFormula.answer = event.key === ' ' ? this.quiz.answers[backtrackIndex] : this.toFullwidthNum(event.key);
       this.bottomFormula.question = `${this.quiz.questions[backtrackIndex]}＝`;
       setTimeout(() => {
         // 切換到下一題後
@@ -78,4 +102,4 @@ const app = Vue.createApp({ // eslint-disable-line no-undef
   }
 });
 
-app.mount('main');
+app.mount('#app');

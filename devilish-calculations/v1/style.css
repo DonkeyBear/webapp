@@ -1,3 +1,7 @@
+nav {
+  border-bottom: 1px solid var(--muted-border-color);
+}
+
 nav ul {
   margin: 0 .75rem !important;
 }
@@ -14,6 +18,14 @@ main {
 
 .hidden {
   visibility: hidden;
+}
+
+.text-center {
+  text-align: center;
+}
+
+td.spacer {
+  padding: 0;
 }
 
 .count,
@@ -62,6 +74,35 @@ main {
 
   .answer .highlight.incorrect {
     background-color: #f7d0cc;
+  }
+}
+
+#numpad {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+}
+
+#numpad .row {
+  display: flex;
+}
+
+#numpad button {
+  font-size: 1.5rem;
+  margin: .25rem;
+  padding: .75rem 0;
+}
+
+#numpad button.chinese {
+  font-size: 1rem;
+}
+
+@media (max-width: 767.98px) {
+  #numpad {
+    display: block;
   }
 }
 
