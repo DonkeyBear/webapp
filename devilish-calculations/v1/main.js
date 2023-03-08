@@ -49,14 +49,18 @@ const app = Vue.createApp({ // eslint-disable-line no-undef
     toFullwidthNum (nums) {
       return String(nums).replace(/\d/g, num => String.fromCharCode(num.charCodeAt(0) + 0xfee0));
     },
-    restart () {
+    gameStart () {
+      window.removeEventListener('keydown', this.onKeydown);
       this.quiz.questions = [];
       this.quiz.answers = [];
       this.score.correct = 0;
       this.score.incorrect = 0;
+      const time = this.rules.timerShowingQuestion;
       for (let i = 0; i <= this.rules.backtrack; i++) {
-        setTimeout(() => { this.generateQuestion() }, this.rules.timerShowingQuestion * i);
+        setTimeout(() => { this.generateQuestion() }, time * i);
       }
+      // 在最後一次秀出題目時綁上事件監聽器
+      setTimeout(() => { window.addEventListener('keydown', this.onKeydown) }, time * this.rules.backtrack);
     },
     simulateKeydown (keydown = '') {
       window.dispatchEvent(new KeyboardEvent('keydown', { key: keydown }));
@@ -94,11 +98,7 @@ const app = Vue.createApp({ // eslint-disable-line no-undef
     }
   },
   mounted () {
-    for (let i = 0; i <= this.rules.backtrack; i++) {
-      setTimeout(() => { this.generateQuestion() }, this.rules.timerShowingQuestion * i);
-    }
-
-    window.addEventListener('keydown', this.onKeydown);
+    this.gameStart();
   }
 });
 
