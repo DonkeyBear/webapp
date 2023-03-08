@@ -58,7 +58,7 @@
           <td class="spacer"></td>
         </tr>
       </table>
-      <p v-show="score.incorrect + score.correct" class="text-center">
+      <p v-show="score.incorrect + score.correct" class="text-center" v-cloak>
         答對 {{ score.correct }} 題，答錯 {{ score.incorrect }} 題<br>
         正確率 {{ Math.floor(score.correct * 100 / (score.incorrect + score.correct)) }}%
       </p>
@@ -81,7 +81,7 @@
         <button @click="simulateKeydown('9')" class="secondary">9</button>
       </div>
       <div class="row">
-        <button @click="restart()" class="secondary chinese">重新開始</button>
+        <button @click="gameStart()" class="secondary chinese">重新開始</button>
         <button @click="simulateKeydown('0')" class="secondary">0</button>
         <button @click="simulateKeydown(' ')" class="secondary chinese">跳過</button>
       </div>
