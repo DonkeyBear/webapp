@@ -59,7 +59,8 @@
         </tr>
       </table>
       <p v-show="score.incorrect + score.correct" class="text-center">
-        答對 {{ score.correct }} 題，答錯 {{ score.incorrect }} 題，正確率：{{ Math.floor(score.correct * 100 / (score.incorrect + score.correct)) }}%
+        答對 {{ score.correct }} 題，答錯 {{ score.incorrect }} 題<br>
+        正確率 {{ Math.floor(score.correct * 100 / (score.incorrect + score.correct)) }}%
       </p>
     </main>
 
