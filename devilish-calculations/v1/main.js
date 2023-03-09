@@ -16,9 +16,10 @@ const app = Vue.createApp({ // eslint-disable-line no-undef
         incorrect: 0
       },
       rules: {
-        backtrack: 2, // N 回溯
+        backtrack: 1, // N 回溯
         timerAfterAnswer: 500, // 答題後切換到下一題前的等待時間（ms）
-        timerShowingQuestion: 1000 // 開始遊戲時，顯示每個回溯題目的等待時間（ms）
+        timerShowingQuestion: 1000, // 開始遊戲時，顯示每個回溯題目的等待時間（ms）
+        unleashLimit: false
       }
     };
   },
@@ -49,6 +50,11 @@ const app = Vue.createApp({ // eslint-disable-line no-undef
     toFullwidthNum (nums) {
       return String(nums).replace(/\d/g, num => String.fromCharCode(num.charCodeAt(0) + 0xfee0));
     },
+    resetRules () {
+      this.rules.backtrack = 1;
+      this.rules.timerAfterAnswer = 500;
+      this.rules.timerShowingQuestion = 1000;
+    },
     gameStart () {
       window.removeEventListener('keydown', this.onKeydown);
       this.quiz.questions = [];
@@ -67,7 +73,7 @@ const app = Vue.createApp({ // eslint-disable-line no-undef
     },
     onKeydown (event) {
       // 鍵盤輸入時觸發
-      if (event.key.toLowerCase() === 'enter') { this.restart() }
+      if (event.key.toLowerCase() === 'enter') { this.gameStart() }
       // 輸入不為數字鍵或空白鍵則不做後續處理
       if (event.key.match(/\D/) && event.key !== ' ') { return }
 

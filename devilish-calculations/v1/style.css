@@ -20,8 +20,16 @@ main {
   visibility: hidden;
 }
 
+.text-start {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
+}
+
+.text-end {
+  text-align: right;
 }
 
 td.spacer {
@@ -103,6 +111,28 @@ td.spacer {
 @media (max-width: 767.98px) {
   #numpad {
     display: block;
+  }
+}
+
+dialog>article {
+  min-width: 25rem;
+}
+
+dialog>article>footer {
+  margin-top: .5rem;
+}
+
+/* 改善 Modal 動畫 */
+:where(.modal-is-opening, .modal-is-closing) dialog,
+:where(.modal-is-opening, .modal-is-closing) dialog>article {
+  animation-duration: .2s;
+  animation-timing-function: ease;
+}
+
+@keyframes modal {
+  from {
+    transform: translateY(-5%);
+    opacity: 0;
   }
 }
 

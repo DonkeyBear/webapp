@@ -20,7 +20,7 @@
     <nav>
       <ul>
         <li class="icon">
-          <a class="secondary">
+          <a class="secondary" data-target="modal" onclick="toggleModal(event)">
             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 96 960 960" width="24">
               <path
                 d="M160 837.479q-22.087 0-37.544-15.456-15.457-15.457-15.457-37.544 0-22.088 15.457-37.544 15.457-15.457 37.544-15.457h640q22.087 0 37.544 15.457 15.457 15.456 15.457 37.544 0 22.087-15.457 37.544-15.457 15.456-37.544 15.456H160Zm0-208.478q-22.087 0-37.544-15.457-15.457-15.457-15.457-37.544 0-22.087 15.457-37.544 15.457-15.457 37.544-15.457h640q22.087 0 37.544 15.457 15.457 15.457 15.457 37.544 0 22.087-15.457 37.544-15.457 15.457-37.544 15.457H160Zm0-208.479q-22.087 0-37.544-15.457-15.457-15.456-15.457-37.544 0-22.087 15.457-37.544 15.457-15.456 37.544-15.456h640q22.087 0 37.544 15.456 15.457 15.457 15.457 37.544 0 22.088-15.457 37.544-15.457 15.457-37.544 15.457H160Z" />
@@ -86,11 +86,43 @@
         <button @click="simulateKeydown(' ')" class="secondary chinese">跳過</button>
       </div>
     </div>
+
+    <dialog id="modal">
+      <article>
+        <a aria-label="Close" class="close" data-target="modal" onclick="toggleModal(event)"></a>
+        <div class="grid">
+          <span>回溯</span>
+          <span class="text-end">{{ rules.backtrack }} 題</span>
+        </div>
+        <input type="range" min="0" :max="15 + (rules.unleashLimit * 85)" step="1" v-model="rules.backtrack">
+        <div class="grid">
+          <span>題目停留時間</span>
+          <span class="text-end">{{ rules.timerShowingQuestion / 1000 }} 秒</span>
+        </div>
+        <input type="range" min="100" :max="2000 + (rules.unleashLimit * 3000)" step="100" v-model="rules.timerShowingQuestion">
+        <div class="grid">
+          <span>答案停留時間</span>
+          <span class="text-end">{{ rules.timerAfterAnswer / 1000 }} 秒</span>
+        </div>
+        <input type="range" min="100" :max="1000 + (rules.unleashLimit * 2000)" step="100" v-model="rules.timerAfterAnswer">
+        <footer>
+          <div class="grid">
+            <label for="unleash-limit" class="text-start">
+              <input type="checkbox" id="unleash-limit" v-model="rules.unleashLimit">
+              擴大調整範圍
+            </label>
+            <u @click="resetRules()">恢復預設值</u>
+          </div>
+        </footer>
+      </article>
+    </dialog>
   </div>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.0-alpha.4/vue.global.min.js"
     integrity="sha512-AZY2ovVkJMdpMmE51J/8O8SQPu3NTZX4iS7gnOEPl2PibHmLbP8f3a/JY+X6t5M6g4OWrU9CBul2GkuSFgXqBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./modal.min.js"></script>
   <script src="./main.js"></script>
 </body>
 
