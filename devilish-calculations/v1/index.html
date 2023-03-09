@@ -90,23 +90,23 @@
     <dialog id="modal">
       <article>
         <a aria-label="Close" class="close" data-target="modal" onclick="toggleModal(event)"></a>
-        <div class="grid">
+        <div class="setting-label">
           <span>回溯</span>
           <span class="text-end">{{ rules.backtrack }} 題</span>
         </div>
         <input type="range" min="0" :max="15 + (rules.unleashLimit * 85)" step="1" v-model="rules.backtrack">
-        <div class="grid">
+        <div class="setting-label">
           <span>題目停留時間</span>
           <span class="text-end">{{ rules.timerShowingQuestion / 1000 }} 秒</span>
         </div>
         <input type="range" min="100" :max="2000 + (rules.unleashLimit * 3000)" step="100" v-model="rules.timerShowingQuestion">
-        <div class="grid">
+        <div class="setting-label">
           <span>答案停留時間</span>
           <span class="text-end">{{ rules.timerAfterAnswer / 1000 }} 秒</span>
         </div>
         <input type="range" min="100" :max="1000 + (rules.unleashLimit * 2000)" step="100" v-model="rules.timerAfterAnswer">
         <footer>
-          <div class="grid">
+          <div class="setting-label">
             <label for="unleash-limit" class="text-start">
               <input type="checkbox" id="unleash-limit" v-model="rules.unleashLimit">
               擴大調整範圍

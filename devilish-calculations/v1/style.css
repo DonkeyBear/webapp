@@ -115,11 +115,16 @@ td.spacer {
 }
 
 dialog>article {
-  min-width: 25rem;
+  width: calc(100vh - var(--spacing) * 2);
 }
 
 dialog>article>footer {
   margin-top: .5rem;
+}
+
+.setting-label {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* 改善 Modal 動畫 */
