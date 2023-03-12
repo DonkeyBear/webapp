@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV Ren'Py 劇本轉換工具</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.7/pico.min.css"
+    integrity="sha512-1VnpjjanhjGWRcbZCUKqh1KbNIGAd8aqsokcHUNlBFM3CfAUasd7D0h1luMzyS01W74K4zUZq7GZnj3yoGYEFQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    input[type="file"] {
+      border: var(--border-width) solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: calc(var(--form-element-spacing-vertical) * 0.5);
+    }
+
+    #output {
+      border: 1px solid var(--form-element-border-color);
+      border-radius: var(--border-radius);
+      padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+      margin-bottom: var(--typography-spacing-vertical);
+      white-space: pre;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>CSV Ren'Py 劇本轉換工具</h1>
+    <div class="grid">
+      <input type="file" @change="getCsvFile">
+      <input type="number" placeholder="略過前 N 列" @input="output()" v-model="skipRow">
+      <button type="button" :disabled="!csvFile" @click="downloadRpy()">下載劇本</button>
+    </div>
+    <div id="output" v-show="outputText">{{ outputText }}</div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.0-alpha.4/vue.global.min.js"
+    integrity="sha512-AZY2ovVkJMdpMmE51J/8O8SQPu3NTZX4iS7gnOEPl2PibHmLbP8f3a/JY+X6t5M6g4OWrU9CBul2GkuSFgXqBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"
+    integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>
