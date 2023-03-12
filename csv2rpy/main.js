@@ -31,7 +31,7 @@ const app = Vue.createApp({
         let dialog = speaker ? `"「${array[i][1].replaceAll('「', '『').replaceAll('」', '』')}」"` : `"${array[i][1]}"`;
         const comment = !array[i][2] ? '' : ` # ${array[i][2]}`;
         if (dialog === '""') { dialog = '' }
-        result += `${speaker}${dialog}${comment}\n`;
+        result += `${speaker}${dialog}${comment}`.trim() + '\n';
       }
       return result;
     },
