@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.7/pico.min.css"
     integrity="sha512-1VnpjjanhjGWRcbZCUKqh1KbNIGAd8aqsokcHUNlBFM3CfAUasd7D0h1luMzyS01W74K4zUZq7GZnj3yoGYEFQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/base16/sandcastle.min.css"
+    integrity="sha512-EYEn7q4M2dTLCbAR7jWF6rFfvf2ooR+nlITIo4tH2LAi//KWdlFecZ45cXclbJ/fgjhDEeSIQhTJWETXCQ1xkA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
   <style>
     input[type="file"] {
       border: var(--border-width) solid var(--border-color);
@@ -16,12 +20,13 @@
       padding: calc(var(--form-element-spacing-vertical) * 0.5);
     }
 
-    #output {
-      border: 1px solid var(--form-element-border-color);
+    pre code.hljs {
+      padding: 2rem;
       border-radius: var(--border-radius);
-      padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+    }
+
+    pre {
       margin-bottom: var(--typography-spacing-vertical);
-      white-space: pre;
     }
   </style>
 </head>
@@ -34,12 +39,23 @@
       <input type="number" placeholder="略過前 N 列" @input="output()" v-model="skipRow">
       <button type="button" :disabled="!csvFile" @click="downloadRpy()">下載劇本</button>
     </div>
-    <div id="output" v-show="outputText">{{ outputText }}</div>
+    <pre v-show="outputText"><code class="language-python">{{ outputText }}</code></pre>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.0-alpha.4/vue.global.min.js"
     integrity="sha512-AZY2ovVkJMdpMmE51J/8O8SQPu3NTZX4iS7gnOEPl2PibHmLbP8f3a/JY+X6t5M6g4OWrU9CBul2GkuSFgXqBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module">
+    import hljs from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/highlight.min.js';
+    import python from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/languages/python.min.js';
+    hljs.registerLanguage('python', python);
+    const observer = new MutationObserver(() => {
+      observer.disconnect();
+      hljs.highlightAll();
+      observer.observe(document.querySelector('pre code'), { childList: true });
+    });
+    observer.observe(document.querySelector('pre code'), { childList: true });
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"
     integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
