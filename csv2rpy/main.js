@@ -30,13 +30,14 @@ const app = Vue.createApp({
         const speaker = !array[i][0] ? '' : `"${array[i][0]}" `;
         const dialog = speaker ? `"「${array[i][1].replaceAll('「', '『').replaceAll('」', '』')}」"` : `"${array[i][1]}"`;
         const comment = !array[i][2] ? '' : ` # ${array[i][2]}`;
+        if (dialog === '""') { dialog = '' }
         result += `${speaker}${dialog}${comment}\n`;
       }
       return result;
     },
     downloadRpy() {
       const blob = new Blob([this.outputText], { type: "text/plain;charset=utf-8" });
-      saveAs(blob, this.csvFile.name.toLowerCase().replaceAll('.csv', '.rpy'));
+      saveAs(blob, this.csvFile.name.replace(/\.csv$/i, '.rpy'));
     }
   }
 });
