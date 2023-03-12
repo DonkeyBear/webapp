@@ -28,6 +28,10 @@
     pre {
       margin-bottom: var(--typography-spacing-vertical);
     }
+
+    [v-cloak] {
+      display: none !important;
+    }
   </style>
 </head>
 
@@ -39,7 +43,7 @@
       <input type="number" placeholder="略過前 N 列" @input="output()" v-model="skipRow">
       <button type="button" :disabled="!csvFile" @click="downloadRpy()">下載劇本</button>
     </div>
-    <pre v-show="outputText"><code class="language-python">{{ outputText }}</code></pre>
+    <pre v-show="outputText"><code class="language-python" v-cloak>{{ outputText }}</code></pre>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.0-alpha.4/vue.global.min.js"

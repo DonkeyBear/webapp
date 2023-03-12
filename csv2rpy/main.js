@@ -18,6 +18,7 @@ const app = Vue.createApp({
       fileReader.readAsText(this.csvFile);
     },
     output() {
+      if (!this.csvContent) { return }
       this.outputText = this.array2rpy(csv2array(this.csvContent));
     },
     array2rpy(array) {
@@ -25,7 +26,7 @@ const app = Vue.createApp({
       // array[row][1]: 內文
       // array[row][2]: 備註
       let result = '';
-      const startRow = !this.skipRow ? 0 : this.skipRow;
+      const startRow = this.skipRow >= 0 ? this.skipRow : 0;
       for (let i = startRow; i < array.length; i++) {
         const speaker = !array[i][0] ? '' : `"${array[i][0]}" `;
         let dialog = speaker ? `"「${array[i][1].replaceAll('「', '『').replaceAll('」', '』')}」"` : `"${array[i][1]}"`;
