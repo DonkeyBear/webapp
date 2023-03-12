@@ -28,7 +28,7 @@ const app = Vue.createApp({
       const startRow = !this.skipRow ? 0 : this.skipRow;
       for (let i = startRow; i < array.length; i++) {
         const speaker = !array[i][0] ? '' : `"${array[i][0]}" `;
-        const dialog = speaker ? `"「${array[i][1].replaceAll('「', '『').replaceAll('」', '』')}」"` : `"${array[i][1]}"`;
+        let dialog = speaker ? `"「${array[i][1].replaceAll('「', '『').replaceAll('」', '』')}」"` : `"${array[i][1]}"`;
         const comment = !array[i][2] ? '' : ` # ${array[i][2]}`;
         if (dialog === '""') { dialog = '' }
         result += `${speaker}${dialog}${comment}\n`;
