@@ -12,8 +12,8 @@ import AboutPage from './components/AboutPage.vue';
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: HomePage },
-    { path: '/about', component: AboutPage }
+    { path: '/webapp/totk-zonai-gacha-tool/dist/', component: HomePage },
+    { path: '/webapp/totk-zonai-gacha-tool/dist/about', component: AboutPage }
   ]
 });
 
