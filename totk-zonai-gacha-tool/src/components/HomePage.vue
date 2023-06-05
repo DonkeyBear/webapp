@@ -1,5 +1,4 @@
 <script setup>
-import { reactive } from 'vue';
 import { useGlobalStore } from '../store';
 import gachaTable from '../assets/gacha-table.json';
 import GachaInfoCard from './GachaInfoCard.vue';
@@ -8,7 +7,7 @@ const global = useGlobalStore();
 
 const getSortedGachaTable = () => {
   if (!global.selectedZonaiDevices.length) { return gachaTable }
-  const filteredGachaTable = reactive([...gachaTable]);
+  const filteredGachaTable = [...gachaTable];
   filteredGachaTable.sort((a, b) => {
     const countSelectedItems = (array) => {
       let count = 0;

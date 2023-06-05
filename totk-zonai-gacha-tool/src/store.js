@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
-import { reactive } from 'vue';
+import { ref } from 'vue';
 
 export const useGlobalStore = defineStore('global', () => {
-  const selectedZonaiDevices = reactive([]);
-
+  const selectedZonaiDevices = ref([]);
   return { selectedZonaiDevices };
 });
