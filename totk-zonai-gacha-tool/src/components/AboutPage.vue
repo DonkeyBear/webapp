@@ -23,6 +23,8 @@ p {
 }
 
 small {
+  display: block;
+  margin-bottom: 3rem;
   color: var(--muted-color);
 }
 </style>

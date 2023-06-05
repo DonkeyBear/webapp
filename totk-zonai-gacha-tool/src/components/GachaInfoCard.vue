@@ -17,6 +17,10 @@ const global = useGlobalStore();
 </template>
 
 <style scoped>
+article {
+  margin: var(--spacing) 0;
+}
+
 header {
   font-weight: bold;
 }
