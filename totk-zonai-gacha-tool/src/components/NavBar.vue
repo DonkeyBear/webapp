@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import FilterModal from './FilterModal.vue';
 
+const distDir = import.meta.env.VITE_DIST_DIR;
+
 const showFilterModal = ref(false);
 const toggleFilterModal = (showModal = true) => {
   showModal ? document.body.classList.add('disable-scroll') : document.body.classList.remove('disable-scroll');
@@ -23,7 +25,7 @@ const toggleFilterModal = (showModal = true) => {
           </svg>
         </a>
         <!-- 於非主畫面時顯示 GitHub 連結 -->
-        <a v-else class="secondary" href="https://github.com/DonkeyBear/webapp/tree/main/totk-zonai-gacha-tool">
+        <a v-else class="secondary" href="https://github.com/DonkeyBear/webapp/tree/main/totk-zonai-gacha-tool" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-github"
             viewBox="0 0 16 16">
             <path
@@ -38,14 +40,14 @@ const toggleFilterModal = (showModal = true) => {
     </div>
     <ul>
       <li>
-        <RouterLink v-if="!useRoute().path.includes('/about')" to="/about" class="secondary">
+        <RouterLink v-if="!useRoute().path.includes('/about')" :to="`${distDir}/about`" class="secondary">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
             class="bi bi-info-circle-fill" viewBox="0 0 16 16">
             <path
               d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
           </svg>
         </RouterLink>
-        <RouterLink v-else to="/" class="secondary">
+        <RouterLink v-else :to="`${distDir}/`" class="secondary">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-view-stacked"
             viewBox="0 0 16 16">
             <path

@@ -9,11 +9,13 @@ import { createPinia } from 'pinia';
 import HomePage from './components/HomePage.vue';
 import AboutPage from './components/AboutPage.vue';
 
+const distDir = import.meta.env.VITE_DIST_DIR;
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/webapp/totk-zonai-gacha-tool/dist/', component: HomePage },
-    { path: '/webapp/totk-zonai-gacha-tool/dist/about', component: AboutPage }
+    { path: `${distDir}/`, component: HomePage },
+    { path: `${distDir}/about`, component: AboutPage }
   ]
 });
 
