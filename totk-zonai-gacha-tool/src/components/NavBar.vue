@@ -14,6 +14,7 @@ const toggleFilterModal = (showModal = true) => {
   <nav>
     <ul>
       <li>
+        <!-- 於主畫面時顯示搜尋鈕 -->
         <a v-if="!useRoute().path.includes('/about')" class="secondary" @click="toggleFilterModal(true)">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search"
             viewBox="0 0 16 16">
@@ -21,7 +22,8 @@ const toggleFilterModal = (showModal = true) => {
               d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
           </svg>
         </a>
-        <a v-else class="secondary" href="">
+        <!-- 於非主畫面時顯示 GitHub 連結 -->
+        <a v-else class="secondary" href="https://github.com/DonkeyBear/webapp/tree/main/totk-zonai-gacha-tool">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-github"
             viewBox="0 0 16 16">
             <path
