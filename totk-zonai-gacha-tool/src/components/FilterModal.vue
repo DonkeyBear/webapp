@@ -53,6 +53,7 @@ header {
   align-items: center;
   font-weight: bold;
   margin-bottom: 0;
+  max-height: calc(100dvh - var(--spacing) * 2);
 }
 
 .close {
