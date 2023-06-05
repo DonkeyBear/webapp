@@ -44,6 +44,13 @@ article {
   flex-direction: column;
   width: 100%;
   text-align: start;
+  max-height: calc(100dvh - var(--spacing) * 2)
+}
+
+@supports not (max-height: calc(100dvh - var(--spacing) * 2)) {
+  article {
+    max-height: calc(80vh - var(--spacing) * 2);
+  }
 }
 
 header {
@@ -53,13 +60,7 @@ header {
   align-items: center;
   font-weight: bold;
   margin-bottom: 0;
-  max-height: calc(100dvh - var(--spacing) * 2);
-}
-
-@supports not (max-height: calc(100dvh - var(--spacing) * 2)) {
-  header {
-    max-height: calc(80vh - var(--spacing) * 2);
-  }
+  max-height: calc(100vh - var(--spacing) * 2);
 }
 
 .close {
