@@ -56,6 +56,12 @@ header {
   max-height: calc(100dvh - var(--spacing) * 2);
 }
 
+@supports not (max-height: calc(100dvh - var(--spacing) * 2)) {
+  header {
+    max-height: calc(80vh - var(--spacing) * 2);
+  }
+}
+
 .close {
   cursor: pointer;
 }
