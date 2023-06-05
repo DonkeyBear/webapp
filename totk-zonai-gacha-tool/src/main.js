@@ -3,20 +3,18 @@ import './style.css';
 import App from './App.vue';
 import '@picocss/pico';
 import '@picocss/pico/docs/js/modal.js';
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import { createPinia } from 'pinia';
 
 import HomePage from './components/HomePage.vue';
 import AboutPage from './components/AboutPage.vue';
 
-const routes = [
-  { path: '/', component: HomePage },
-  { path: '/about', component: AboutPage }
-];
-
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+  history: createWebHistory(),
+  routes: [
+    { path: '/', component: HomePage },
+    { path: '/about', component: AboutPage }
+  ]
 });
 
 const pinia = createPinia();

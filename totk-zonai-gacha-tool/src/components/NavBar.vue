@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import FilterModal from './FilterModal.vue';
 
 const showFilterModal = ref(false);
@@ -14,7 +14,7 @@ const toggleFilterModal = (showModal = true) => {
   <nav>
     <ul>
       <li>
-        <a v-if="!this.$route.path.includes('/about')" class="secondary" @click="toggleFilterModal(true)">
+        <a v-if="!useRoute().path.includes('/about')" class="secondary" @click="toggleFilterModal(true)">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search"
             viewBox="0 0 16 16">
             <path
@@ -36,7 +36,7 @@ const toggleFilterModal = (showModal = true) => {
     </div>
     <ul>
       <li>
-        <RouterLink v-if="!this.$route.path.includes('/about')" to="/about" class="secondary">
+        <RouterLink v-if="!useRoute().path.includes('/about')" to="/about" class="secondary">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
             class="bi bi-info-circle-fill" viewBox="0 0 16 16">
             <path
