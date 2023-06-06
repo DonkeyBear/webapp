@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
 defineProps({
@@ -8,7 +7,7 @@ defineProps({
 
 const distDir = import.meta.env.VITE_DIST_DIR;
 
-const links = ref([
+const links = [
   {
     text: '左納烏轉蛋助手',
     route: '/'
@@ -21,7 +20,7 @@ const links = ref([
     text: '關於本程式',
     route: '/about'
   }
-]);
+];
 </script>
 
 <template>
