@@ -36,7 +36,7 @@ const global = useGlobalStore();
 
 <style scoped>
 dialog {
-  transition: all .3s ease;
+  transition: all ease .2s;
 }
 
 article {
