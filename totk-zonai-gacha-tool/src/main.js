@@ -11,13 +11,11 @@ import VueGtagPlugin from 'vue-gtag';
 import HomePage from './components/HomePage.vue';
 import AboutPage from './components/AboutPage.vue';
 
-const distDir = import.meta.env.VITE_DIST_DIR;
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: `${distDir}/`, component: HomePage },
-    { path: `${distDir}/about`, component: AboutPage }
+    { path: '/', component: HomePage },
+    { path: '/about', component: AboutPage }
   ]
 });
 
