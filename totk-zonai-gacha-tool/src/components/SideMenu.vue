@@ -5,8 +5,6 @@ defineProps({
   show: Boolean
 });
 
-const distDir = import.meta.env.VITE_DIST_DIR;
-
 const links = [
   {
     text: '左納烏轉蛋助手',
@@ -26,7 +24,7 @@ const links = [
 <template>
   <Transition name="side-menu">
     <div class="menu-container" v-show="show">
-      <RouterLink v-for="link of links" :to="distDir + link.route" @click="$emit('close-menu')">
+      <RouterLink v-for="link of links" :to="link.route" @click="$emit('close-menu')">
         <button>{{ link.text }}</button>
       </RouterLink>
     </div>
