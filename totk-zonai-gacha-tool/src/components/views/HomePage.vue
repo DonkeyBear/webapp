@@ -1,7 +1,7 @@
 <script setup>
-import { useGlobalStore } from '../store';
-import gachaTable from '../assets/gacha-table.json';
-import GachaInfoCard from './GachaInfoCard.vue';
+import { useGlobalStore } from '../../store';
+import gachaTable from '../../assets/gacha-table.json';
+import GachaInfoCard from '../GachaInfoCard.vue';
 
 const global = useGlobalStore();
 
@@ -23,5 +23,7 @@ const getSortedGachaTable = () => {
 </script>
 
 <template>
-  <GachaInfoCard v-for="item of getSortedGachaTable()" :location="item.location" :items="item.items" />
+  <div class="card-container">
+    <GachaInfoCard v-for="item of getSortedGachaTable()" :location="item.location" :items="item.items" />
+  </div>
 </template>

@@ -38,8 +38,8 @@ const togglePopup = (popupName, isShow) => {
       </li>
     </ul>
     <div class="title">
-      <div class="top">—— 王國之淚 ——</div>
-      <div class="bottom">左納烏轉蛋助手</div>
+      <div class="top">— 王國之淚 —</div>
+      <div class="bottom">左納烏助手</div>
     </div>
     <ul>
       <li>

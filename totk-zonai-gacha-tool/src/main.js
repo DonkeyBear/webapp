@@ -8,8 +8,8 @@ import { createPinia } from 'pinia';
 import VueGtagPlugin from 'vue-gtag';
 
 // Vue 頁面元件
-import HomePage from './components/HomePage.vue';
-import AboutPage from './components/AboutPage.vue';
+import HomePage from './components/views/HomePage.vue';
+import AboutPage from './components/views/AboutPage.vue';
 
 const router = createRouter({
   history: createWebHashHistory(),
