@@ -60,8 +60,10 @@ function App() {
             <div
               key={`${new Date().getTime()}_${index}`}
               style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 width: '100%',
-                // height: `calc(30vw - ${borderWidth} * 2)`,
                 aspectRatio: '1',
                 boxSizing: 'border-box',
                 borderWidth,

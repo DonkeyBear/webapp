@@ -12,18 +12,14 @@ export default function Piece(props) {
   const isCircle = props.type === 'O'
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-      height: '100%',
-    }}>
+    <div>
       <span className="material-symbols-outlined" style={{
+        position: 'absolute',
+        transform: 'translate(-50%, -50%)',
         userSelect: 'none',
         fontSize: isCircle ? 'min(1200%, 22.5dvw)' : 'min(1400%, 27.5dvw)',
         color: isCircle ? '#47e' : '#e45',
-        opacity: props?.isGhost ? '0.5' : '1',
+        opacity: props?.isGhost ? '0.5' : '1'
       }}>
         {isCircle ? 'circle' : 'close'}
       </span>
