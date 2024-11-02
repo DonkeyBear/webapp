@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-export function PlayerMessage(props) {
+export default function PlayerMessage(props) {
   return (
     <div style={{
       position: 'absolute',
@@ -9,6 +9,7 @@ export function PlayerMessage(props) {
       rotate: props.isUpsideDown ? '180deg' : '',
       fontSize: '1.25rem',
       padding: '0.75rem',
+      fontWeight: 'bold'
     }}>
       {props.content}
     </div>

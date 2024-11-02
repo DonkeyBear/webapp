@@ -1,9 +1,7 @@
-import { useState } from 'react'
 import './App.css'
+import { useState, useEffect, useMemo } from 'react'
 import Piece from './components/Piece'
-import { useEffect } from 'react'
-import { useMemo } from 'react'
-import { PlayerMessage } from './components/PlayerMessage'
+import PlayerMessage from './components/PlayerMessage'
 import TransparentOverlay from './components/TransparentOverlay'
 
 function App() {
@@ -32,12 +30,14 @@ function App() {
 
   return (
     <>
-      {winner !== null && <TransparentOverlay onClick={() => {
-        setBoard(Array(9).fill(''))
-        setClearSequence(Array(6).fill(null))
-        setCurrentPlayer('O')
-        setWinner(null)
-      }} />}
+      {winner !== null && (
+        <TransparentOverlay onClick={() => {
+          setBoard(Array(9).fill(''))
+          setClearSequence(Array(6).fill(null))
+          setCurrentPlayer('O')
+          setWinner(null)
+        }} />
+      )}
       <PlayerMessage
         content={generateMessage('X')}
         isUpsideDown={true}
@@ -60,8 +60,10 @@ function App() {
             <div
               key={`${new Date().getTime()}_${index}`}
               style={{
-                width: `calc(30vw - ${borderWidth} * 2)`,
-                height: `calc(30vw - ${borderWidth} * 2)`,
+                width: '100%',
+                // height: `calc(30vw - ${borderWidth} * 2)`,
+                aspectRatio: '1',
+                boxSizing: 'border-box',
                 borderWidth,
                 borderStyle: 'solid',
                 borderTopColor: [0, 1, 2].includes(index) ? 'transparent' : 'white',

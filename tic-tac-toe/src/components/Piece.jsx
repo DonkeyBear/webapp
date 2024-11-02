@@ -21,8 +21,7 @@ export default function Piece(props) {
     }}>
       <span className="material-symbols-outlined" style={{
         userSelect: 'none',
-        fontSize: '100%',
-        scale: isCircle ? '5' : '6',
+        fontSize: isCircle ? 'min(1200%, 22.5dvw)' : 'min(1400%, 27.5dvw)',
         color: isCircle ? '#47e' : '#e45',
         opacity: props?.isGhost ? '0.5' : '1',
       }}>
